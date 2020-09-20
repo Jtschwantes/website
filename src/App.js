@@ -1,9 +1,47 @@
-import React from 'react';
+/** @jsxFrag React.Fragment */
+/** @jsx jsx */
+import React from 'react'
+import {jsx, css} from '@emotion/core'
+import Header from './components/Header'
+import About from './pages/About'
+import './App.css'
+import Loading from './pages/Loading'
+import Projects from './pages/Projects'
+import HomePage from './pages/HomePage'
+import useAxios from 'axios-hooks'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-function App() {
-  return (
-    <h1>Hello World!</h1>
-  )
+const pageContainer = css`
+    max-width: 800px;
+    margin: auto;
+    padding: 0px 60px;
+`
+const separator = css`
+    height: 30px;
+`
+
+export default function App() {
+    const [{data, loading, error}] = useAxios('https://still-journey-39405.herokuapp.com/projects');
+    console.log(data)
+    console.log(loading)
+    console.log(error)
+    return (
+      <Router>
+        {loading && <Loading />}
+        {data && (
+        <>
+          <Header />
+          <div css={separator}></div>
+          <div css={pageContainer}>
+            <Switch>
+              <Route path="/about"><About /></Route>
+              <Route path="/projects"><Projects projects={data}/> </Route>
+              <Route path="/"><HomePage /></Route>
+            </Switch>
+          </div>
+        </>
+        )}
+      </Router>
+    );
 }
 
-export default App;
