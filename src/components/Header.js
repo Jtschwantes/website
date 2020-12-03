@@ -34,7 +34,7 @@ export default function Header() {
             <ul css={ul}>
                 <li><Link css={link} to='/'>Home</Link></li>
                 <li><Link css={link} to='/projects'>Projects</Link></li>
-                <li><Link css={link} to='/about'>About Me</Link></li>
+                <li><Link css={link} to='/about'>About</Link></li>
             </ul>
         </div>
     )
