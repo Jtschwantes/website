@@ -37,12 +37,14 @@ const google = css`
 
 export default function Header({signedIn, setSignedIn}) {
     const signIn = (res) => {
-        setSignedIn(true)
+        setSignedIn(res.id_token)
         console.log(res)
     }
     const signOut = () => {
         setSignedIn(false)
     }
+
+    console.log(signedIn)
 
     return (
         <div css={fullDiv}>
