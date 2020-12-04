@@ -1,6 +1,6 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from 'react'
+import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import Header from './components/Header'
 import About from './pages/About'
@@ -24,13 +24,14 @@ const separator = css`
 
 export default function App() {
     const [{data, loading, error}] = useAxios('https://still-journey-39405.herokuapp.com/projects');
-    
+    const [signedIn, setSignedIn] = useState(false);
+
     return (
       <Router>
         {loading && <Loading />}
         {data && (
         <>
-          <Header />
+          <Header signedIn={signedIn} setSignedIn={setSignedIn}/>
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>

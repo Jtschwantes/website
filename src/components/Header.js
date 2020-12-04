@@ -28,21 +28,25 @@ const link = css`
         color: #101020
     } 
 `
+const google = css`
+    display: flex;
+    margin-left: auto;
+`
 
-export default function Header() {
+export default function Header({signedIn, setSignedIn}) {
     return (
         <div css={fullDiv}>
             <ul css={ul}>
                 <li><Link css={link} to='/'>Home</Link></li>
                 <li><Link css={link} to='/projects'>Projects</Link></li>
                 <li><Link css={link} to='/about'>About</Link></li>
-                <li><GoogleLogin 
+                <div css={google}><GoogleLogin 
                     clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
                     // buttonText="Login"
                     onSuccess={(res) => {console.log(res)}}
                     cookiePolicy={'single_host_origin'} 
                     isSignedIn={true}
-                /></li>
+                /></div>
             </ul>
         </div>
     )
