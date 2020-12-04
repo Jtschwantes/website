@@ -44,9 +44,7 @@ export default function Header({signedIn, setSignedIn}) {
         setSignedIn(false)
     }
     const signInFail = (res) => { console.log(res) }
-    const signOutFail = () => { setSignedIn(false) }
-
-    console.log(signedIn)
+    const signOutFail = () => {  }
 
     return (
         <div css={fullDiv}>

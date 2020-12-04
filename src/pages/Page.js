@@ -8,49 +8,62 @@ import ProjectCard from '../components/ProjectCard'
 import EducationCard from '../components/EducationCard'
 import SkillCard from '../components/SkillCard'
 import JobCard from '../components/JobCard'
+import Loading from './Loading'
 
 const cardContainer = css`
     display: flex;
 `
+const floatRight = css`
+    margin-left: auto;
+    text-align: right;
+`
 
 export default function Page() {
   const path = `https://still-journey-39405.herokuapp.com`
-  var {id} = useParams(id)
-  const [{data: projectData, loading: projectLoading, error: projectError}] = useAxios(`${path}/projects`)
-  const [{data: educationData, loading: educationLoading, error: educationError}] = useAxios(`${path}/educations`)
-  const [{data: skillData, loading: skillLoading, error: skillError}] = useAxios(`${path}/skills`)
-  const [{data: jobData, loading: jobLoading, error: jobError}] = useAxios(`${path}/jobs`)
+  const url = window.location.href
+  const id = url.split('/')[url.split('/').length - 1]
+  const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
   return(
     <>
-      <h1 css={css`margin: 0px;`}>Jakeypoo Jakeypooson</h1>
-      <p css={css`margin: 0px;`}>655-655-6555</p>
-      {jobData && (
+      {loading && <Loading/>}
+      {data?.account && (
+        <>
+            {console.log(data)}
+            <div css={cardContainer}><h1 css={css`margin: 0px 0px 10px 0px;`}>{data.account.first} {data.account.last}</h1>
+                <div css={floatRight}>
+                    {data.account.phone}<br />
+                    {data.account.email}
+                </div>
+            </div>
+        </>
+      )}
+      {data?.jobs && (
           <>
             <h2>Employment History</h2>
-            {jobData.map(job => <JobCard job={job}/>)}
+            {data.jobs.map(job => <JobCard job={job}/>)}
           </>
       )}
-      {projectData && (
+      {data?.projects && (
           <>
             <h2>Projects</h2>
             <div css={cardContainer}>
-                {projectData.map(proj => <ProjectCard project={proj}/>)}
+                {data.projects.map(proj => <ProjectCard project={proj}/>)}
             </div>
           </>
         )
       }
-      {skillData && (
+      {data?.skills && (
           <>
         <h2>Skills</h2>
         <div css={cardContainer}>
-           {skillData.map(skill => <SkillCard skill={skill}/>)} 
+           {data.skills.map(skill => <SkillCard skill={skill}/>)} 
         </div>
         </>
       )}
-      {educationData && (
+      {data?.educations && (
         <>
         <h2>Education</h2>
-        {educationData.map(educ => <EducationCard education={educ}/>)}
+        {data.educations.map(educ => <EducationCard education={educ}/>)}
         </>
         )
       }
