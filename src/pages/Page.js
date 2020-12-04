@@ -28,13 +28,14 @@ export default function Page({ signedIn }) {
   const id = url.split('/')[url.split('/').length - 1]
   const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
   const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
-    url: `${path}/verify`,
-    method: 'POST',
-    data: {
-        token: signedIn,
-        account_id: id
-    }
-})
+      url: `${path}/verify`,
+      method: 'POST',
+      data: {
+          token: signedIn,
+          account_id: id
+        }
+    })
+  const isOwner = validate?.isOwner
 return(
     <>
       {loading && <Loading/>}
@@ -48,10 +49,10 @@ return(
             </div>
         </>
       )}
-      {data?.jobs && <JobSection jobs={data.jobs}/>}
-      {data?.projects && <ProjectSection projects={data.projects}/>}
-      {data?.skills && <SkillSection skills={data.skills}/>}
-      {data?.educations && <EducationCard educations={data.educations}/>}
+      {data?.jobs && <JobSection jobs={data.jobs} isOwner={isOwner}/>}
+      {data?.projects && <ProjectSection projects={data.projects} isOwner={isOwner}/>}
+      {data?.skills && <SkillSection skills={data.skills} isOwner={isOwner}/>}
+      {data?.educations && <EducationSection educations={data.educations} isOwner={isOwner}/>}
     </>
   )
 }

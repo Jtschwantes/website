@@ -14,19 +14,19 @@ const card = css`
     height: 100px;
 `
 
-export default function EducationCards({ education }) {
+export default function EducationCard({ education }) {
     return(
         <div css={card}>
             <p css={css`margin: 2px;`}>
                 <div css={css`display: flex;`}>
-                    <strong>{education.school}</strong>
+                    <strong>{education?.school}</strong>
                     <em css={css`margin-left: auto;`}>
-                        {`${formatDate(education.startdate)} - ${formatDate(education.enddate)}`}
+                        {`${formatDate(education?.startdate)} - ${formatDate(education?.enddate)}`}
                     </em>
                     <br />
                 </div>
-                <em>{education.type} - {education.field}</em><br />
-                <p>{education.description}</p>
+                <em>{education?.type} - {education?.field}</em><br />
+                <p>{education?.description}</p>
             </p>
         </div>
     )
