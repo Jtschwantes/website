@@ -48,21 +48,21 @@ export default function Header({signedIn, setSignedIn}) {
                 <li><Link css={link} to='/'>Home</Link></li>
                 <li><Link css={link} to='/projects'>Projects</Link></li>
                 <li><Link css={link} to='/about'>About</Link></li>
-                <div css={google}>
-                    {signedIn && <GoogleLogin 
-                        clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
-                        // buttonText="Login"
-                        onSuccess={signIn}
-                        cookiePolicy={'single_host_origin'} 
-                        isSignedIn={true}
-                    />}
-                    {!signedIN && <GoogleLogout
-                        clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
-                        buttonText="Logout"
-                        onLogoutSuccess={signOut}
-                    />}
-                </div>
             </ul>
+            <div css={google}>
+                {signedIn && <GoogleLogin 
+                    clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
+                    // buttonText="Login"
+                    onSuccess={signIn}
+                    cookiePolicy={'single_host_origin'} 
+                    isSignedIn={true}
+                />}
+                {!signedIN && <GoogleLogout
+                    clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
+                    buttonText="Logout"
+                    onLogoutSuccess={signOut}
+                />}
+            </div>
         </div>
     )
 }
