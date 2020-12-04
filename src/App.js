@@ -45,16 +45,6 @@ export default function App() {
     //     }
     //     document.body.appendChild(gapiScript)
     // }, [])
-
-    if (auth2.isSignedIn.get()) {
-        var profile = auth2.currentUser.get().getBasicProfile();
-        console.log('ID: ' + profile.getId());
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-      }
     
     return (
       <Router>
@@ -66,7 +56,9 @@ export default function App() {
             clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
             // buttonText="Login"
             onSuccess={(res) => {console.log(res)}}
-            cookiePolicy={'single_host_origin'} />
+            cookiePolicy={'single_host_origin'} 
+            isSignedIn={true}
+          />
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>
