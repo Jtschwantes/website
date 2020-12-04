@@ -30,16 +30,18 @@ const link = css`
     } 
 `
 const google = css`
+    margin: 10px 10px;
     display: flex;
     margin-left: auto;
 `
 
 export default function Header({signedIn, setSignedIn}) {
     const signIn = (res) => {
+        setSignedIn(true)
         console.log(res)
     }
-    const signOut = (res) => {
-        console.log(res)
+    const signOut = () => {
+        setSignedIn(false)
     }
 
     return (
