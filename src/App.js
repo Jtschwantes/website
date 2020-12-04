@@ -54,7 +54,7 @@ export default function App() {
           <Header />
           <GoogleLogin 
             clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
-            buttonText="Login"
+            // buttonText="Login"
             onSuccess={(res) => {console.log(res)}}
             cookiePolicy={'single_host_origin'} />
           <div css={separator}></div>
