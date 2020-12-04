@@ -7,7 +7,7 @@ export default function EducationSection({ educations, isOwner }) {
     return(
         <>
         <h2>Education</h2>
-        {data.educations.map(educ => <EducationCard education={educ}/>)}
+        {educations.map(educ => <EducationCard education={educ}/>)}
         </>
     )
 }
