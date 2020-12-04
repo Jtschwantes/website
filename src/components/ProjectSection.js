@@ -3,6 +3,9 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 
+const cardContainer = css`
+    display: flex;
+`
 export default function ProjectSection({ projects, isOwner }) {
     return(
         <>
