@@ -11,7 +11,6 @@ import HomePage from './pages/HomePage'
 import Accounts from './pages/Page'
 import useAxios from 'axios-hooks'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import GoogleLogin from 'react-google-login'
 
 const pageContainer = css`
     max-width: 750px;
@@ -25,26 +24,6 @@ const separator = css`
 
 export default function App() {
     const [{data, loading, error}] = useAxios('https://still-journey-39405.herokuapp.com/projects');
-    // React.useEffect(() => {
-    //     // Google api load
-    //     const gapiScript = document.createElement('script')
-    //     gapiScript.src = 'https://apis.google.com/js/platform.js'
-    //     gapiScript.onload = () => {
-    //         window.gapi.load('auth2', () => {
-    //             window.gapi.auth2.init({
-    //                 client_id: '723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com'
-    //             })
-    //             window.gapi.load('signin2', () => {
-    //                 const params = {
-    //                     theme: 'dark',
-    //                     onsuccess: () => {console.log('Big Yay!')}
-    //                 }
-    //                 window.gapi.
-    //             })
-    //         })
-    //     }
-    //     document.body.appendChild(gapiScript)
-    // }, [])
     
     return (
       <Router>
@@ -52,13 +31,6 @@ export default function App() {
         {data && (
         <>
           <Header />
-          <GoogleLogin 
-            clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
-            // buttonText="Login"
-            onSuccess={(res) => {console.log(res)}}
-            cookiePolicy={'single_host_origin'} 
-            isSignedIn={true}
-          />
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>

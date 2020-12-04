@@ -2,6 +2,7 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import {Link} from 'react-router-dom'
+import GoogleLogin from 'react-google-login'
 
 const fullDiv = css`
     height: 65px;
@@ -35,6 +36,13 @@ export default function Header() {
                 <li><Link css={link} to='/'>Home</Link></li>
                 <li><Link css={link} to='/projects'>Projects</Link></li>
                 <li><Link css={link} to='/about'>About</Link></li>
+                <li><GoogleLogin 
+                    clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
+                    // buttonText="Login"
+                    onSuccess={(res) => {console.log(res)}}
+                    cookiePolicy={'single_host_origin'} 
+                    isSignedIn={true}
+                /></li>
             </ul>
         </div>
     )
