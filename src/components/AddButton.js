@@ -20,10 +20,10 @@ const btn = css`
     } 
 `
 
-export default function JobSection({ onClick }) {
+export default function AddButton({ onClick }) {
     return(
           <>
-            <div css={btn}>Edit</div>
+            <div css={btn}>Add</div>
           </>
     )
 }

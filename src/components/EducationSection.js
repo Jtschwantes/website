@@ -1,9 +1,9 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from 'react'
+import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import EducationCard from './EducationCard'
-import EditButton from './EditButton'
+import EditButton from './AddButton'
 
 const cardContainer = css`
     display: flex;
@@ -15,11 +15,17 @@ const floatRight = css`
 `
 
 export default function EducationSection({ educations, isOwner }) {
+    const [editing, setEditing] = useState(false)
     return(
         <>
             <div css={cardContainer}>
                 <h2>Education</h2>
-                {isOwner && <div css={floatRight}><EditButton /></div>}
+                {isOwner && <div css={floatRight} onClick={() => {
+                    setEditing(true)
+                }}>
+                    <EditButton/>
+                </div>
+                }
             </div>
             {educations.map(educ => <EducationCard education={educ}/>)}
         </>

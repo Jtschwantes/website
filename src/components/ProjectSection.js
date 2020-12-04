@@ -3,7 +3,7 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import ProjectCard from './ProjectCard'
-import EditButton from './EditButton'
+import EditButton from './AddButton'
 
 const cardContainer = css`
     display: flex;
