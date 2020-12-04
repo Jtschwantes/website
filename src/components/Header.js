@@ -37,7 +37,7 @@ const google = css`
 
 export default function Header({signedIn, setSignedIn}) {
     const signIn = (res) => {
-        // setSignedIn(res.id_token)
+        setSignedIn(res.tokenId)
         console.log(res)
     }
     const signOut = () => {
