@@ -38,7 +38,7 @@ export default function App() {
                         theme: 'dark',
                         onsuccess: () => {console.log('Big Yay!')}
                     }
-                    window.gapi.signin2.render("google", params)
+                    window.gapi.signin2.render('google', params)
                 })
             })
         }
@@ -51,7 +51,7 @@ export default function App() {
         {data && (
         <>
           <Header />
-          <div id="google"/>
+          <div id="google">Sign in with Google</div>
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>
