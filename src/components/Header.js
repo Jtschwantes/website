@@ -57,7 +57,7 @@ export default function Header({signedIn, setSignedIn}) {
                     cookiePolicy={'single_host_origin'} 
                     isSignedIn={true}
                 />}
-                {!signedIN && <GoogleLogout
+                {!signedIn && <GoogleLogout
                     clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
                     buttonText="Logout"
                     onLogoutSuccess={signOut}
