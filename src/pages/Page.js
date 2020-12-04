@@ -23,7 +23,7 @@ export default function Page({ signedIn }) {
   const url = window.location.href
   const id = url.split('/')[url.split('/').length - 1]
   const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
-  const [{data: isUser, loading: isUserLoading, error: isUserError}] = useAxios({
+  const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
     url: `${path}/verify`,
     method: 'POST',
     data: {
@@ -36,7 +36,6 @@ return(
       {loading && <Loading/>}
       {data?.account && (
           <>
-          {console.log(isUser)}
             <div css={cardContainer}><h1 css={css`margin: 0px 0px 10px 0px;`}>{data.account.first} {data.account.last}</h1>
                 <div css={floatRight}>
                     {data.account.phone}<br />
@@ -47,13 +46,13 @@ return(
       )}
       {data?.jobs && (
           <>
-            <h2>Employment History</h2>
+            <h2>Employment History</h2>{validate?.isOwner && <h1>Edit Button</h1>}
             {data.jobs.map(job => <JobCard job={job}/>)}
           </>
       )}
       {data?.projects && (
           <>
-            <h2>Projects</h2>
+            <h2>Projects</h2>{validate?.isOwner && <h1>Edit Button</h1>}
             <div css={cardContainer}>
                 {data.projects.map(proj => <ProjectCard project={proj}/>)}
             </div>
@@ -62,7 +61,7 @@ return(
       }
       {data?.skills && (
           <>
-        <h2>Skills</h2>
+        <h2>Skills</h2>{validate?.isOwner && <h1>Edit Button</h1>}
         <div css={cardContainer}>
            {data.skills.map(skill => <SkillCard skill={skill}/>)} 
         </div>
@@ -70,7 +69,7 @@ return(
       )}
       {data?.educations && (
         <>
-        <h2>Education</h2>
+        <h2>Education</h2>{validate?.isOwner && <h1>Edit Button</h1>}
         {data.educations.map(educ => <EducationCard education={educ}/>)}
         </>
         )
