@@ -3,6 +3,7 @@ import React from 'react'
 import {jsx, css} from '@emotion/core'
 import {Link} from 'react-router-dom'
 import GoogleLogin from 'react-google-login'
+import { GoogleLogout } from 'react-google-login';
 
 const fullDiv = css`
     height: 65px;
@@ -34,19 +35,33 @@ const google = css`
 `
 
 export default function Header({signedIn, setSignedIn}) {
+    const signIn = (res) => {
+        console.log(res)
+    }
+    const signOut = (res) => {
+        console.log(res)
+    }
+
     return (
         <div css={fullDiv}>
             <ul css={ul}>
                 <li><Link css={link} to='/'>Home</Link></li>
                 <li><Link css={link} to='/projects'>Projects</Link></li>
                 <li><Link css={link} to='/about'>About</Link></li>
-                <div css={google}><GoogleLogin 
-                    clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
-                    // buttonText="Login"
-                    onSuccess={(res) => {console.log(res)}}
-                    cookiePolicy={'single_host_origin'} 
-                    isSignedIn={true}
-                /></div>
+                <div css={google}>
+                    {signedIn && <GoogleLogin 
+                        clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
+                        // buttonText="Login"
+                        onSuccess={signIn}
+                        cookiePolicy={'single_host_origin'} 
+                        isSignedIn={true}
+                    />}
+                    {!signedIN && <GoogleLogout
+                        clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
+                        buttonText="Logout"
+                        onLogoutSuccess={signOut}
+                    />}
+                </div>
             </ul>
         </div>
     )
