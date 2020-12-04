@@ -18,17 +18,25 @@ const floatRight = css`
     text-align: right;
 `
 
-export default function Page() {
+export default function Page({ signedIn }) {
   const path = `https://still-journey-39405.herokuapp.com`
   const url = window.location.href
   const id = url.split('/')[url.split('/').length - 1]
   const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
-  return(
+  const [{data: isUser, loading: isUserLoading, error: isUserError}] = useAxios({
+    url: `${path}/verify`,
+    method: 'POST',
+    data: {
+        token: signedIn,
+        account_id: id
+    }
+})
+return(
     <>
       {loading && <Loading/>}
       {data?.account && (
-        <>
-            {console.log(data)}
+          <>
+          {console.log(isUser)}
             <div css={cardContainer}><h1 css={css`margin: 0px 0px 10px 0px;`}>{data.account.first} {data.account.last}</h1>
                 <div css={floatRight}>
                     {data.account.phone}<br />

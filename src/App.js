@@ -7,8 +7,8 @@ import About from './pages/About'
 import './App.css'
 import Loading from './pages/Loading'
 import Projects from './pages/Projects'
-import HomePage from './pages/HomePage'
-import Accounts from './pages/Page'
+import Home from './pages/Home'
+import Page from './pages/Page'
 import useAxios from 'axios-hooks'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
@@ -37,8 +37,8 @@ export default function App() {
             <Switch>
               <Route path="/about"><About /></Route>
               <Route path="/projects"><Projects projects={data}/></Route>
-              <Route path="/:id"><Accounts/></Route>
-              <Route path="/"><HomePage /></Route>
+              <Route path="/:id"><Page signedIn={signedIn}/></Route>
+              <Route path="/"><Home /></Route>
             </Switch>
           </div>
         </>
