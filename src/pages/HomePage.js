@@ -13,16 +13,6 @@ const link = css`
 `
 
 export default function HomePage() {
-    const [isOpen, setIsOpen] = React.useState(false);
-
-    const showModal = () => {
-      setIsOpen(true);
-    };
-  
-    const hideModal = () => {
-      setIsOpen(false);
-    };
-
   return(
     <>
       <h1>Welcome to My Website!</h1>

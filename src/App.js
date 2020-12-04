@@ -25,12 +25,24 @@ const separator = css`
 export default function App() {
     const [{data, loading, error}] = useAxios('https://still-journey-39405.herokuapp.com/projects');
     React.useEffect(() => {
-        window.gapi.load('auth2', () => {
-            window.gapi.auth2.init({
-                client_id: '723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com'
+        // Google api load
+        const gapiScript = document.createElement('script')
+        gapiScript.src = 'https://apis.google.com/js/platform.js'
+        gapiScript.onload = () => {
+            window.gapi.load('auth2', () => {
+                window.gapi.auth2.init({
+                    client_id: '723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com'
+                })
+                window.gapi.load('signin2', () => {
+                    const params = {
+                        theme: 'dark',
+                        onsuccess: () => {console.log('Big Yay!')}
+                    }
+                    window.gapi.signin2.render("google", params)
+                })
             })
-            console.log('api init')
-        })
+        }
+        document.body.appendChild(gapiScript)
     }, [])
     
     return (
@@ -39,6 +51,7 @@ export default function App() {
         {data && (
         <>
           <Header />
+          <div id="google"/>
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>
