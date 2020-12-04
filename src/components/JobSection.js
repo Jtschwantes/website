@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import {jsx, css} from '@emotion/core'
+import JobCard from './JobCard'
 
 export default function JobSection({ jobs, isOwner }) {
     return(

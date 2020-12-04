@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import {jsx, css} from '@emotion/core'
+import ProjectCard from './ProjectCard'
 
 const cardContainer = css`
     display: flex;

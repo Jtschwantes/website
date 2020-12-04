@@ -2,6 +2,12 @@
 /** @jsx jsx */
 import React from 'react'
 import {jsx, css} from '@emotion/core'
+import SkillCard from './SkillCard'
+
+
+const cardContainer = css`
+    display: flex;
+`
 
 export default function SkillSection({ skills, isOwner }) {
     return(
