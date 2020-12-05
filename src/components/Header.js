@@ -6,7 +6,7 @@ import GoogleLogin from 'react-google-login'
 import { GoogleLogout } from 'react-google-login';
 
 const fullDiv = css`
-    height: 65px;
+    height: 66px;
     background-color: #303050;
     display: flex;
     box-shadow:  3px 3px 5px 6px #112;
@@ -17,11 +17,12 @@ const ul = css`
     padding-inline-start: 0px;
 `
 const link = css`
-    padding: 16px;
     text-decoration: none;
     text-align: center;
     font-size: 24px;
     color: #e0e0ff;
+    padding: 29px 15px;
+    margin: 0px;
     text-transform: uppercase;
     transition: background-color 0.4s, color 0.4s;
     &:hover {
