@@ -27,7 +27,8 @@ const promptCtr = css`
     width: 20%;
 `
 
-export default function EducationSection({ educations, isOwner, signedIn, id }) {
+export default function EducationSection({ educs, isOwner, signedIn, id }) {
+    const [educations, setEducations] = useState(educs)
     const [editing, setEditing] = useState(false)
 
     const [school, setSchool] = useState('')
@@ -51,7 +52,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id }) 
                 token: signedIn
             }
             axiosEducation('POST', data)
-                .then(educations.push(data))
+                .then(()=> educations.push(data))
                 .catch(console.error)
         }
     }
@@ -60,11 +61,11 @@ export default function EducationSection({ educations, isOwner, signedIn, id }) 
             <div css={cardContainer}>
                 <h2>Education</h2>
                 {isOwner &&  
-                <div css={floatRight} >
-                    <Button text={editing?"Save":"Add"} onClick={onClick}/>
-                    {console.log(editing)}
-                </div>
-            }
+                    <div css={floatRight} >
+                        <Button text={editing?"Save":"Add"} onClick={onClick}/>
+                        {console.log(editing)}
+                    </div>
+                }
             </div>
             {editing && (
                 <>
