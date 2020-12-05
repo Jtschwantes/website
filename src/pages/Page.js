@@ -34,7 +34,7 @@ export default function Page({ signedIn }) {
     })
   const isOwner = validate?.isOwner
 
-  const useEffect(() => {
+  useEffect(() => {
     setData(getData)
   }, [getData])
 return(
