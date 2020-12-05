@@ -52,7 +52,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
             }
             setEditing(false)
             await axiosEducation('POST', postInfo).catch(console.error)
-            setData(Object.assign(data, {educations: data.educations.concat(postInfo)}))
+            setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.concat(postInfo)})))
         }
     }
     return(
