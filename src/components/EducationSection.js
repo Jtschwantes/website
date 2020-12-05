@@ -50,7 +50,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, fo
                 account_id: id,
                 token: signedIn
             }
-            axiosEducation('POST', data).then(()=>forceUpdate()).catch(console.error)
+            axiosEducation('POST', data).catch(console.error)
             setEditing(false)
         }
     }
