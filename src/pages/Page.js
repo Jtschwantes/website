@@ -1,6 +1,6 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React, { useReducer, useState } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
 import {jsx, css} from '@emotion/core'
 import useAxios from 'axios-hooks'
 import ProjectSection from '../components/ProjectSection'
@@ -22,6 +22,7 @@ export default function Page({ signedIn }) {
   const url = window.location.href
   const id = url.split('/')[url.split('/').length - 1]
   // Bad practice, don't judge:
+  const [data, setData] = useState()
   const [{data: getData, loading, error}] = useAxios(`${path}/accountData/${id}`)
   const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
       url: `${path}/verify`,
@@ -32,7 +33,10 @@ export default function Page({ signedIn }) {
         }
     })
   const isOwner = validate?.isOwner
-  const [data, setData] = useState(getData)
+
+  const useEffect(() => {
+    setData(getData)
+  }, [getData])
 return(
     <>
       {loading && <Loading/>}
