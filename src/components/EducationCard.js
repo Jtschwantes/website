@@ -7,6 +7,7 @@ import { formatDate } from '../services/utility'
 import Button from './Button'
 
 const card = css`
+    position: relative;
     background-color: #383855;
     border-radius: 10px;
     margin: 5px;
