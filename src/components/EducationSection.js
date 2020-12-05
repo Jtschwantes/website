@@ -51,9 +51,9 @@ export default function EducationSection({ educs, isOwner, signedIn, id }) {
                 account_id: id,
                 token: signedIn
             }
-            axiosEducation('POST', data)
-                .then(()=> educations.push(data))
-                .catch(console.error)
+            axiosEducation('POST', data).catch(console.error)
+            setEducations(educations.push(data))
+            setEditing(false)
         }
     }
     return(
