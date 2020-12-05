@@ -6,6 +6,7 @@ import JobCard from './JobCard'
 
 const btn = css`
     display: table-cell;
+    margin: 0px 2px;
     background-color: #303050; 
     width: 100px;
     text-align: center;
