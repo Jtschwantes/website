@@ -17,8 +17,8 @@ const card = css`
 
 const editBtns = css`
     position: absolute
-    top: 40px;
-    left: 500px;
+    top: 0px;
+    left: 0px;
 `
 
 export default function EducationCard({ education, isOwner }) {
