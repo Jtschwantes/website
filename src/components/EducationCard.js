@@ -24,15 +24,16 @@ const editBtns = css`
     right: -5px;
 `
 
-export default function EducationCard({ education, isOwner, signedIn }) {
+export default function EducationCard({ education, isOwner, signedIn, data, setData }) {
     const [editing, setEditing] = useState(false)
     const edit = () => {
         
     }
 
     const del = () => {
-        axiosDeleteEducation(education.id, {token: signedIn, account_id: education.account_id})
+        await axiosDeleteEducation(education.id, {token: signedIn, account_id: education.account_id})
             .catch(console.error)
+        setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.filter(educ => educ.id != education.id)})))
     }
 
     return(

@@ -89,7 +89,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
                 </div>
                 </>
             )}
-            {educations.map(educ => <EducationCard education={educ} isOwner={isOwner} signedIn={signedIn}/>)}
+            {educations.map(educ => <EducationCard education={educ} isOwner={isOwner} signedIn={signedIn} data={data} setData={setData}/>)}
         </>
     )
 }
