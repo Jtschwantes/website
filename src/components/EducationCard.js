@@ -26,11 +26,11 @@ const editBtns = css`
 
 export default function EducationCard({ education, isOwner, signedIn, data, setData }) {
     const [editing, setEditing] = useState(false)
-    const edit = () => {
+    const edit = async() => {
         
     }
 
-    const del = () => {
+    const del = async() => {
         await axiosDeleteEducation(education.id, {token: signedIn, account_id: education.account_id})
             .catch(console.error)
         setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.filter(educ => educ.id != education.id)})))
