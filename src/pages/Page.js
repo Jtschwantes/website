@@ -24,14 +24,21 @@ export default function Page({ signedIn }) {
   // Bad practice, don't judge:
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
   const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
-  const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
+  const [{data: validate, loading: validateLoading, error: validateError}, executeValidate] = useAxios({
       url: `${path}/verify`,
       method: 'POST',
       data: {
           token: signedIn,
           account_id: id
         }
-    })
+    }, { manual: true })
+  if(signedIn) executeValidate({
+    url: `${path}/verify`,
+    method: 'POST',
+    data: {
+        token: signedIn,
+        account_id: id
+    }})
   const isOwner = validate?.isOwner
 return(
     <>
