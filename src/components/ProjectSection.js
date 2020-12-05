@@ -3,7 +3,7 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import ProjectCard from './ProjectCard'
-import EditButton from './AddButton'
+import Button from './Button'
 
 const cardContainer = css`
     display: flex;
@@ -18,7 +18,7 @@ export default function ProjectSection({ projects, isOwner }) {
         <>
             <div css={cardContainer}>
                 <h2>Projects</h2>
-                {isOwner && <div css={floatRight}><EditButton /></div>}
+                {isOwner && <div css={floatRight}><Button /></div>}
             </div>
             <div css={cardContainer}>
                 {projects.map(proj => <ProjectCard project={proj}/>)}

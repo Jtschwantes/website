@@ -3,7 +3,7 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import SkillCard from './SkillCard'
-import EditButton from './AddButton'
+import Button from './Button'
 
 const cardContainer = css`
     display: flex;
@@ -19,7 +19,7 @@ export default function SkillSection({ skills, isOwner }) {
         <>
             <div css={cardContainer}>
                 <h2>Skills</h2>
-                {isOwner && <div css={floatRight}><EditButton /></div>}
+                {isOwner && <div css={floatRight}><Button /></div>}
             </div>
             <div css={cardContainer}>
             {skills.map(skill => <SkillCard skill={skill}/>)} 

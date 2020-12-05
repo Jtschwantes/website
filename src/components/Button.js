@@ -20,10 +20,10 @@ const btn = css`
     } 
 `
 
-export default function AddButton({ onClick }) {
+export default function Button({ onClick, text }) {
     return(
           <>
-            <div css={btn}>Add</div>
+            <div css={btn} onClick={onClick}>{text}</div>
           </>
     )
 }

@@ -1,0 +1,24 @@
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+    margin: 5px 15px;
+    text-align: right;
+}
+
+li {
+    margin: 0px 0px 18px 0px;
+}
+
+input {
+    border-radius: 15px;
+    background-color: #202030;
+    color: #e0e0ff;
+    font-size: 20px;
+    width: 78%;
+    height: 25px;
+    margin: 5px 0px;
+    padding: 0px;
+    border-bottom:2px solid #669;
+    border-right:2px solid #669;
+    outline-color: #dd3333;
+}

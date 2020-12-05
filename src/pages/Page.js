@@ -2,12 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import {jsx, css} from '@emotion/core'
-import { useParams } from 'react-router-dom'
 import useAxios from 'axios-hooks'
-import ProjectCard from '../components/ProjectCard'
-import EducationCard from '../components/EducationCard'
-import SkillCard from '../components/SkillCard'
-import JobCard from '../components/JobCard'
 import ProjectSection from '../components/ProjectSection'
 import EducationSection from '../components/EducationSection'
 import SkillSection from '../components/SkillSection'
@@ -49,10 +44,10 @@ return(
             </div>
         </>
       )}
-      {data?.jobs && <JobSection jobs={data.jobs} isOwner={isOwner}/>}
-      {data?.projects && <ProjectSection projects={data.projects} isOwner={isOwner}/>}
-      {data?.skills && <SkillSection skills={data.skills} isOwner={isOwner}/>}
-      {data?.educations && <EducationSection educations={data.educations} isOwner={isOwner}/>}
+      {data?.jobs && <JobSection id={id} signedIn={signedIn} jobs={data.jobs} isOwner={isOwner}/>}
+      {data?.projects && <ProjectSection id={id} signedIn={signedIn} projects={data.projects} isOwner={isOwner}/>}
+      {data?.skills && <SkillSection id={id} signedIn={signedIn} skills={data.skills} isOwner={isOwner}/>}
+      {data?.educations && <EducationSection id={id} signedIn={signedIn} educations={data.educations} isOwner={isOwner}/>}
     </>
   )
 }

@@ -3,7 +3,7 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import JobCard from './JobCard'
-import EditButton from './AddButton'
+import Button from './Button'
 
 const cardContainer = css`
     display: flex;
@@ -19,7 +19,7 @@ export default function JobSection({ jobs, isOwner }) {
           <>
             <div css={cardContainer}>
                 <h2>Employment History</h2>
-                {isOwner && <div css={floatRight}><EditButton /></div>}
+                {isOwner && <div css={floatRight}><Button /></div>}
             </div>
             {jobs.map(job => <JobCard job={job}/>)}
           </>
