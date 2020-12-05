@@ -22,6 +22,7 @@ export default function Page({ signedIn }) {
   const url = window.location.href
   const id = url.split('/')[url.split('/').length - 1]
   // Bad practice, don't judge:
+  const [validated, setValidated] = useState(false)
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
   const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
   const [{data: validate, loading: validateLoading, error: validateError}, executeValidate] = useAxios({
@@ -32,13 +33,16 @@ export default function Page({ signedIn }) {
           account_id: id
         }
     }, { manual: true })
-  if(signedIn) executeValidate({
-    url: `${path}/verify`,
-    method: 'POST',
-    data: {
-        token: signedIn,
-        account_id: id
-    }})
+  if(signedIn && !validated) {
+      executeValidate({
+        url: `${path}/verify`,
+        method: 'POST',
+        data: {
+            token: signedIn,
+            account_id: id
+        }})
+        setValidated(true)
+    }
   const isOwner = validate?.isOwner
 return(
     <>
