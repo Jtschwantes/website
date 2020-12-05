@@ -30,7 +30,7 @@ const promptCtr = css`
 export default function EducationSection({ educations, isOwner, signedIn, id }) {
     const [editing, setEditing] = useState(false)
 
-    const [name, setName] = useState('')
+    const [school, setSchool] = useState('')
     const [field, setField] = useState('')
     const [type, setType] = useState('')
     const [start, setStart] = useState('')
@@ -41,7 +41,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id }) 
         if(!editing) setEditing(true)
         else {
             let data = {
-                name,
+                school,
                 field,
                 type,
                 startDate: start,
@@ -50,19 +50,21 @@ export default function EducationSection({ educations, isOwner, signedIn, id }) 
                 account_id: id,
                 token: signedIn
             }
-            axiosEducation('POST', data).catch(console.error)
+            axiosEducation('POST', data)
+                .then(educations.push(data))
+                .catch(console.error)
         }
     }
     return(
         <>
             <div css={cardContainer}>
                 <h2>Education</h2>
-                {/* {isOwner &&  */}
+                {isOwner &&  
                 <div css={floatRight} >
                     <Button text={editing?"Save":"Add"} onClick={onClick}/>
                     {console.log(editing)}
                 </div>
-                
+            }
             </div>
             {editing && (
                 <>
@@ -78,7 +80,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id }) 
                             <li>Description</li>
                         </ul>
                     </div>
-                    <input onChange={e => setName(e.target.value)}/>
+                    <input onChange={e => setSchool(e.target.value)}/>
                     <input onChange={e => setField(e.target.value)}/>
                     <input onChange={e => setType(e.target.value)}/>
                     <input onChange={e => setStart(e.target.value)}/>

@@ -30,6 +30,14 @@ export default function Page({ signedIn }) {
           account_id: id
         }
     })
+  const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
+      url: `${path}/verify`,
+      method: 'POST',
+      data: {
+          token: signedIn,
+          account_id: id
+        }
+    })
   const isOwner = validate?.isOwner
 return(
     <>
