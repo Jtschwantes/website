@@ -4,6 +4,7 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import { formatDate } from '../services/utility'
+import Button from './Button'
 
 const card = css`
     background-color: #383855;
@@ -23,7 +24,6 @@ const editBtns = css`
 export default function EducationCard({ education, isOwner }) {
     return(
         <div css={card}>
-            {/* <p css={css`margin: 2px;`}> */}
                 <div css={css`display: flex;`}>
                     <strong>{education?.school}</strong>
                     <em css={css`margin-left: auto;`}>
@@ -33,7 +33,7 @@ export default function EducationCard({ education, isOwner }) {
                 </div>
                 <em>{education?.type} - {education?.field}</em><br />
                 <p>{education?.description}</p>
-            {/* </p> */}
+                <div css={editBtns}><Button text="Edit"/></div>
         </div>
     )
 }
