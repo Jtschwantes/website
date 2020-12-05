@@ -21,6 +21,8 @@ export default function Page({ signedIn }) {
   const path = `https://still-journey-39405.herokuapp.com`
   const url = window.location.href
   const id = url.split('/')[url.split('/').length - 1]
+  // Bad practice, don't judge:
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
   const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
   const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
       url: `${path}/verify`,
@@ -44,10 +46,34 @@ return(
             </div>
         </>
       )}
-      {data?.jobs && <JobSection id={id} signedIn={signedIn} jobs={data.jobs} isOwner={isOwner}/>}
-      {data?.projects && <ProjectSection id={id} signedIn={signedIn} projects={data.projects} isOwner={isOwner}/>}
-      {data?.skills && <SkillSection id={id} signedIn={signedIn} skills={data.skills} isOwner={isOwner}/>}
-      {data?.educations && <EducationSection id={id} signedIn={signedIn} educations={data.educations} isOwner={isOwner}/>}
+      {data?.jobs && <JobSection 
+        id={id} 
+        signedIn={signedIn} 
+        forceUpdate={forceUpdate}
+        jobs={data.jobs}
+        isOwner={isOwner}
+      />}
+      {data?.projects && <ProjectSection 
+        id={id} 
+        signedIn={signedIn} 
+        forceUpdate={forceUpdate}
+        projects={data.projects}
+        isOwner={isOwner}
+      />}
+      {data?.skills && <SkillSection 
+        id={id} 
+        signedIn={signedIn} 
+        forceUpdate={forceUpdate}
+        skills={data.skills}
+        isOwner={isOwner}
+      />}
+      {data?.educations && <EducationSection 
+        id={id} 
+        signedIn={signedIn} 
+        forceUpdate={forceUpdate}
+        educations={data.educations}
+        isOwner={isOwner}
+      />}
     </>
   )
 }

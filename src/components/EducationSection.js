@@ -27,8 +27,7 @@ const promptCtr = css`
     width: 20%;
 `
 
-export default function EducationSection({ educs, isOwner, signedIn, id }) {
-    const [educations, setEducations] = useState(educs)
+export default function EducationSection({ educations, isOwner, signedIn, id, forceUpdate }) {
     const [editing, setEditing] = useState(false)
 
     const [school, setSchool] = useState('')
@@ -51,8 +50,7 @@ export default function EducationSection({ educs, isOwner, signedIn, id }) {
                 account_id: id,
                 token: signedIn
             }
-            axiosEducation('POST', data).catch(console.error)
-            setEducations(educations.push(data))
+            axiosEducation('POST', data).then(()=>forceUpdate()).catch(console.error)
             setEditing(false)
         }
     }
