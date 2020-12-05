@@ -14,10 +14,16 @@ const card = css`
     height: 100px;
 `
 
-export default function EducationCard({ education }) {
+const editBtns = css`
+    position: absolute
+    top: 50px;
+    left: 500px;
+`
+
+export default function EducationCard({ education, isOwner }) {
     return(
         <div css={card}>
-            <p css={css`margin: 2px;`}>
+            {/* <p css={css`margin: 2px;`}> */}
                 <div css={css`display: flex;`}>
                     <strong>{education?.school}</strong>
                     <em css={css`margin-left: auto;`}>
@@ -27,7 +33,7 @@ export default function EducationCard({ education }) {
                 </div>
                 <em>{education?.type} - {education?.field}</em><br />
                 <p>{education?.description}</p>
-            </p>
+            {/* </p> */}
         </div>
     )
 }
