@@ -37,6 +37,8 @@ export default function EducationSection({ educations, isOwner, signedIn, id, fo
     const [end, setEnd] = useState('')
     const [description, setDesc] = useState('')
 
+    console.log(isOwner)
+
     const onClick = (e) => {
         if(!editing) setEditing(true)
         else {
