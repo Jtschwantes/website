@@ -18,6 +18,7 @@ const card = css`
 
 const editBtns = css`
     position: absolute;
+    display: float;
     bottom: 5px;
     right: -5px;
 `
@@ -34,7 +35,7 @@ export default function EducationCard({ education, isOwner }) {
                 </div>
                 <em>{education?.type} - {education?.field}</em><br />
                 <p>{education?.description}</p>
-                <div css={editBtns}><Button text="Edit"/></div>
+                <div css={editBtns}><Button text="Edit"/><Button text="Delete"/></div>
         </div>
     )
 }
