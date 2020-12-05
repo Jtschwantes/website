@@ -22,8 +22,7 @@ export default function Page({ signedIn }) {
   const url = window.location.href
   const id = url.split('/')[url.split('/').length - 1]
   // Bad practice, don't judge:
-  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-  const [{data, loading, error}] = useAxios(`${path}/accountData/${id}`)
+  const [{data: getData, loading, error}] = useAxios(`${path}/accountData/${id}`)
   const [{data: validate, loading: validateLoading, error: validateError}] = useAxios({
       url: `${path}/verify`,
       method: 'POST',
@@ -33,6 +32,7 @@ export default function Page({ signedIn }) {
         }
     })
   const isOwner = validate?.isOwner
+  const [data, setData] = useState(getData)
 return(
     <>
       {loading && <Loading/>}
@@ -49,21 +49,18 @@ return(
       {data?.jobs && <JobSection 
         id={id} 
         signedIn={signedIn} 
-        forceUpdate={forceUpdate}
         jobs={data.jobs}
         isOwner={isOwner}
       />}
       {data?.projects && <ProjectSection 
         id={id} 
         signedIn={signedIn} 
-        forceUpdate={forceUpdate}
         projects={data.projects}
         isOwner={isOwner}
       />}
       {data?.skills && <SkillSection 
         id={id} 
         signedIn={signedIn} 
-        forceUpdate={forceUpdate}
         skills={data.skills}
         isOwner={isOwner}
       />}
@@ -71,7 +68,6 @@ return(
       {data?.educations && <EducationSection 
         id={id} 
         signedIn={signedIn} 
-        forceUpdate={forceUpdate}
         educations={data.educations}
         isOwner={isOwner}
       />}
