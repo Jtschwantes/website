@@ -17,7 +17,7 @@ const card = css`
 
 const editBtns = css`
     position: absolute
-    top: 50px;
+    top: 40px;
     left: 500px;
 `
 
