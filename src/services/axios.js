@@ -3,31 +3,24 @@ import axios from 'axios'
 
 const path = `https://still-journey-39405.herokuapp.com`
 
-export const axiosEducation = async(method, data) => {
+export const axiosPostEducation = async(data) => {
     axios({
-        method: method,
+        method: 'POST',
         url: `${path}/educations`,
         data: data
     })
 }
-// const axiosPostEducation = async(data) => {
-//     axios({
-//         method: 'POST',
-//         url: `${path}/educations`,
-//         data: data
-//     })
-// }
-// const axiosPutEducation = async(data) => {
-//     axios({
-//         method: 'PUT',
-//         url: `${path}/educations`,
-//         data: data
-//     })
-// }
-// const axiosDeleteEducation = async(data) => {
-//     axios({
-//         method: 'DELETE',
-//         url: `${path}/educations`,
-//         data: data
-//     })
-// }
+export const axiosPutEducation = async(id, data) => {
+    axios({
+        method: 'PUT',
+        url: `${path}/educations/${id}`,
+        data: data
+    })
+}
+export const axiosDeleteEducation = async(id, data) => {
+    axios({
+        method: 'DELETE',
+        url: `${path}/educations/${id}`,
+        data: data
+    })
+}

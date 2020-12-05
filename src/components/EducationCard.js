@@ -1,10 +1,11 @@
 
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from 'react'
+import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import { formatDate } from '../services/utility'
 import Button from './Button'
+import { axiosDeleteEducation } from '../services/axios'
 
 const card = css`
     position: relative;
@@ -23,7 +24,17 @@ const editBtns = css`
     right: -5px;
 `
 
-export default function EducationCard({ education, isOwner }) {
+export default function EducationCard({ education, isOwner, signedIn }) {
+    const [editing, setEditing] = useState(false)
+    const edit = () => {
+        
+    }
+
+    const del = () => {
+        axiosDeleteEducation(education.id, {token: signedIn, account_id: education.account_id})
+            .catch(console.error)
+    }
+
     return(
         <div css={card}>
                 <div css={css`display: flex;`}>
@@ -35,7 +46,7 @@ export default function EducationCard({ education, isOwner }) {
                 </div>
                 <em>{education?.type} - {education?.field}</em><br />
                 <p>{education?.description}</p>
-                <div css={editBtns}><Button text="Edit"/><Button text="Delete"/></div>
+                {isOwner && <div css={editBtns}><Button text="Edit"/><Button text="Delete" onClick={del}/></div>}
         </div>
     )
 }

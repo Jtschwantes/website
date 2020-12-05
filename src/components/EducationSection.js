@@ -6,7 +6,7 @@ import EducationCard from './EducationCard'
 import Button from './Button'
 import '../stylesheets/ctr.css'
 import axios from 'axios'
-import { axiosEducation } from '../services/axios'
+import { axiosPostEducation } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -51,7 +51,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
                 token: signedIn
             }
             setEditing(false)
-            await axiosEducation('POST', postInfo).catch(console.error)
+            await axiosPostEducation('POST', postInfo).catch(console.error)
             setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.concat(postInfo)})))
         }
     }
@@ -89,7 +89,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
                 </div>
                 </>
             )}
-            {educations.map(educ => <EducationCard education={educ} isOwner={isOwner}/>)}
+            {educations.map(educ => <EducationCard education={educ} isOwner={isOwner} signedIn={signedIn}/>)}
         </>
     )
 }
