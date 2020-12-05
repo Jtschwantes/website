@@ -1,6 +1,6 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from 'react'
+import React, { useReducer } from 'react'
 import {jsx, css} from '@emotion/core'
 import useAxios from 'axios-hooks'
 import ProjectSection from '../components/ProjectSection'
@@ -67,6 +67,7 @@ return(
         skills={data.skills}
         isOwner={isOwner}
       />}
+      {data && console.log(data)}
       {data?.educations && <EducationSection 
         id={id} 
         signedIn={signedIn} 
