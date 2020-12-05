@@ -27,7 +27,7 @@ const promptCtr = css`
     width: 20%;
 `
 
-export default function EducationSection({ educations, isOwner, signedIn, id, forceUpdate }) {
+export default function EducationSection({ educations, isOwner, signedIn, id, data, setData }) {
     const [editing, setEditing] = useState(false)
 
     const [school, setSchool] = useState('')
@@ -37,10 +37,10 @@ export default function EducationSection({ educations, isOwner, signedIn, id, fo
     const [end, setEnd] = useState('')
     const [description, setDesc] = useState('')
 
-    const onClick = (e) => {
+    const onClick = async(e) => {
         if(!editing) setEditing(true)
         else {
-            let data = {
+            let postInfo = {
                 school,
                 field,
                 type,
@@ -51,7 +51,8 @@ export default function EducationSection({ educations, isOwner, signedIn, id, fo
                 token: signedIn
             }
             setEditing(false)
-            axiosEducation('POST', data).then(()=>window.location.reload()).catch(console.error)
+            await axiosEducation('POST', postInfo).catch(console.error)
+            setData(data.educations.concat(postInfo))
         }
     }
     return(

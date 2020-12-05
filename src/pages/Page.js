@@ -34,10 +34,9 @@ export default function Page({ signedIn }) {
     })
   const isOwner = validate?.isOwner
 
-  useEffect(() => {
-    setData(getData)
-  }, [getData])
-return(
+  useEffect(() => setData(getData), [getData])
+
+  return(
     <>
       {loading && <Loading/>}
       {data?.account && (
@@ -55,18 +54,24 @@ return(
         signedIn={signedIn} 
         jobs={data.jobs}
         isOwner={isOwner}
+        setData={setData}
+        data={data}
       />}
       {data?.projects && <ProjectSection 
         id={id} 
         signedIn={signedIn} 
         projects={data.projects}
         isOwner={isOwner}
+        setData={setData}
+        data={data}
       />}
       {data?.skills && <SkillSection 
         id={id} 
         signedIn={signedIn} 
         skills={data.skills}
         isOwner={isOwner}
+        setData={setData}
+        data={data}
       />}
       {data && console.log(data)}
       {data?.educations && <EducationSection 
@@ -74,6 +79,8 @@ return(
         signedIn={signedIn} 
         educations={data.educations}
         isOwner={isOwner}
+        setData={setData}
+        data={data}
       />}
     </>
   )
