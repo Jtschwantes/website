@@ -43,6 +43,7 @@ export default function Profile({ signedIn }) {
                 token: signedIn,
                 account_id: id
             } 
+            setEditing(false)
             axiosPutAccount(id, putData).catch(console.error)
             setFirst(putData.first)
             setLast(putData.last)
@@ -75,6 +76,7 @@ export default function Profile({ signedIn }) {
             {data && !editing && (
                 <>
                     <h1>Profile</h1>
+                    <p>Your resume page is visible at: <Link to={`/accounts/${id}`}>https://jtschwantes.com/accounts/{id}</Link></p>
                     <h2>Name: {data.first?data.first:''} {data.last?data.last:''}</h2>
                     <p>Phone number: {data.phone?data.phone:''}</p>
                     <p>Email address: {data.email?data.email:''}</p>
