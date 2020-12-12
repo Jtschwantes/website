@@ -45,3 +45,24 @@ export const axiosDeleteJob = async(id, data) => {
         data: data
     })
 }
+export const axiosPostSkill = async(data) => {
+    axios({
+        method: 'POST',
+        url: `${path}/skills`,
+        data: data
+    })
+}
+export const axiosPutSkill = async(id, data) => {
+    axios({
+        method: 'PUT',
+        url: `${path}/skills/${id}`,
+        data: data
+    })
+}
+export const axiosDeleteSkill = async(id, data) => {
+    axios({
+        method: 'DELETE',
+        url: `${path}/skills/${id}`,
+        data: data
+    })
+}

@@ -1,9 +1,11 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from 'react'
+import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import SkillCard from './SkillCard'
 import Button from './Button'
+import '../stylesheets/ctr.css'
+import { axiosPostSkill } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -13,15 +15,61 @@ const floatRight = css`
     margin-left: auto;
     margin-top: 0px;
 `
+const addSkill = css`
+    display: float;
+    height: 230px;
+    background-color: #303050;
+    border-radius: 15px;
+    padding: 15px;
+`
+const promptCtr = css`
+    width: 20%;
+`
 
-export default function SkillSection({ skills, isOwner }) {
+export default function SkillSection({ skills, isOwner, signedIn, id, data, setData }) {
+    const [editing, setEditing] = useState(false)
+
+    const [description, setDesc] = useState('')
+
+    const onClick = async(e) => {
+        if(!editing) setEditing(true)
+        else {
+            let postInfo = {
+                description,
+                account_id: id,
+                token: signedIn
+            }
+            setEditing(false)
+            await axiosPostSkill(postInfo).catch(console.error)
+            setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.concat(postInfo)})))
+        }
+    }
+    
     return(
         <>
             <div css={cardContainer}>
                 <h2>Skills</h2>
-                {isOwner && <div css={floatRight}><Button /></div>}
+                {isOwner &&  
+                    <div css={floatRight} >
+                        <Button text={editing?"Save":"Add"} onClick={onClick}/>
+                        {console.log(editing)}
+                    </div>
+                }
             </div>
             <div css={cardContainer}>
+            {editing && (
+                <>
+                <strong>Please input the following information:</strong>
+                <div css={addSkill}>
+                    <div css={promptCtr}>
+                        <ul>
+                            <li>Description</li>
+                        </ul>
+                    </div>
+                    <input onChange={e => setDesc(e.target.value)}/>
+                </div>
+                </>
+            )}
             {skills.map(skill => <SkillCard skill={skill}/>)} 
             </div>
         </>

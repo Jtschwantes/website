@@ -3,8 +3,11 @@
 /** @jsx jsx */
 import React from 'react'
 import {jsx, css} from '@emotion/core'
+import Button from './Button'
+import { axiosDeleteSkill } from '../services/axios'
 
 const card = css`
+    position: relative;
     width: 250px;
     height: 25px;
     padding: 5px;
@@ -13,11 +16,24 @@ const card = css`
     border-radius: 10px;
     margin: 2px;
 `
+const editBtns = css`
+    position: absolute;
+    display: float;
+    bottom: 5px;
+    right: -5px;
+`
 
-export default function SkillCard({ skill }) {
+export default function SkillCard({ skill, isOwner, signedIn, data, setData }) {
+    const del = async() => {
+        await axiosDeleteSkill(skill.id, {token: signedIn, account_id: skill.account_id})
+            .catch(console.error)
+        setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.filter(skill => skill.id != skill.id)})))
+    }
+    
     return(
         <div css={card}>
             <span css={css`font-size: 12px; font-weight: bold;`}>{skill.description}</span>
+            {isOwner && <div css={editBtns}><Button text="Edit"/><Button text="Delete" onClick={del}/></div>}
         </div>
     )
 }
