@@ -57,7 +57,7 @@ export default function ProjectCard({ project, isOwner, signedIn, data, setData,
                 <span css={css`font-size: 12px;`}>{project.summary}</span>
             </div>
             <img css={picCtr} src={project.imgLink} alt="Project Image" width='200'/>
-            {isOwner && <div css={editBtns}><Button edit text="Edit" onEdit={() => onEdit(project)}/><Button del text="Delete" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><Button edit text="Edit" onClick={() => onEdit(project)}/><Button del text="Delete" onClick={del}/></div>}
         </div>
     )
 }
