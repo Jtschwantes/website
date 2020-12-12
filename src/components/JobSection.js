@@ -48,7 +48,7 @@ export default function JobSection({ jobs, isOwner, signedIn, id, data, setData 
                 token: signedIn
             }
             setEditing(false)
-            await axiosPostJob('POST', postInfo).catch(console.error)
+            await axiosPostJob(postInfo).catch(console.error)
             setData(JSON.parse(JSON.stringify({ ...data, jobs: data.jobs.concat(postInfo)})))
         }
     }
