@@ -44,7 +44,7 @@ const editBtns = css`
 `
 
 export default function ProjectCard({ project, isOwner, signedIn, data, setData, onEdit }) {
-    history = useHistory()
+    const history = useHistory()
     const del = async() => {
         await axiosDeleteProject(project.id, {token: signedIn, account_id: project.account_id})
             .catch(console.error)
@@ -53,7 +53,7 @@ export default function ProjectCard({ project, isOwner, signedIn, data, setData,
     
     return(
         <div css={card}>
-            <div css={txtCtr} onClick={() => history.push(`/projects/${projects.id}`)}>
+            <div css={txtCtr} onClick={() => history.push(`/projects/${project.id}`)}>
                 <strong>{project.name}</strong><br/>
                 {formatDate(project.date)}<br/>
                 <span css={css`font-size: 12px;`}>{project.summary}</span>
