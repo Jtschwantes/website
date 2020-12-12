@@ -49,7 +49,6 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
     const onClick = async() => {
         if(!editing) setEditing(true)
         else if(updating) {
-            setDesc('')
             let putInfo = {
                 name,
                 summary,
@@ -89,7 +88,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                 <h2>Projects</h2>
                 {isOwner &&  
                     <div css={floatRight} >
-                        {editing && <Button text='Cancel' onClick={()=>setEditing(false)}/>}
+                        {editing && <Button text='Cancel' onClick={()=>{setEditing(false); setUpdating(false);}}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                     </div>
                 }

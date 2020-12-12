@@ -41,7 +41,6 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
     const onClick = async() => {
         if(!editing) setEditing(true)
         else if(updating) {
-            setDesc('')
             let putInfo = {
                 description,
                 account_id: id,

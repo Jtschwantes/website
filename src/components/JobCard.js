@@ -23,7 +23,7 @@ const editBtns = css`
     right: -5px;
 `
 
-export default function JobCard({ job, isOwner, signedIn, data, setData }) {
+export default function JobCard({ job, isOwner, signedIn, data, setData, onEdit }) {
     const del = async() => {
         await axiosDeleteJob(job.id, {token: signedIn, account_id: job.account_id})
             .catch(console.error)
@@ -43,7 +43,7 @@ export default function JobCard({ job, isOwner, signedIn, data, setData }) {
                 <em>{job.employer}</em><br />
                 {job.description}
             </p>
-            {isOwner && <div css={editBtns}><Button edit text="Edit"/><Button del text="Delete" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><Button edit onClick={() => onEdit(job)} text="Edit"/><Button del text="Delete" onClick={del}/></div>}
         </div>
     )
 }

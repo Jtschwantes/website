@@ -46,14 +46,13 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
         setField(edu.field)
         setDesc(edu.description)
         setSchool(edu.school)
-        setStart(edu.startDate)
-        setEnd(edu.endDate)
+        setStart(edu.startdate)
+        setEnd(edu.enddate)
     }
 
     const onClick = async() => {
         if(!editing) setEditing(true)
         else if(updating) {
-            setDesc('')
             let putInfo = {
                 school,
                 field,
@@ -92,7 +91,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
                 <h2>Education</h2>
                 {isOwner &&  
                     <div css={floatRight} >
-                        {editing && <Button text='Cancel' onClick={()=>setEditing(false)}/>}
+                        {editing && <Button text='Cancel' onClick={()=>{setEditing(false); setUpdating(false)}}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                     </div>
                 }
