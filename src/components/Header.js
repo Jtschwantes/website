@@ -36,8 +36,8 @@ const google = css`
     margin-left: auto;
 `
 
-export default function Header({signedIn, setSignedIn, id}) {
-    const signIn = (res) => { setSignedIn(res.tokenId), setInfo(res) }
+export default function Header({signedIn, setSignedIn, id, setInfo}) {
+    const signIn = (res) => { setSignedIn(res.tokenId); setInfo(res) }
     const signOut = () => {
         setSignedIn(false)
     }
