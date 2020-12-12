@@ -34,6 +34,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
     const onClick = async(e) => {
         if(!editing) setEditing(true)
         else {
+            setDesc('')
             let postInfo = {
                 description,
                 account_id: id,
@@ -66,7 +67,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                             <li>Description</li>
                         </ul>
                     </div>
-                    <input onChange={e => setDesc(e.target.value)}/>
+                    <input onChange={e => setDesc(e.target.value)} value={description}/>
                 </div>
                 </>
             )}
