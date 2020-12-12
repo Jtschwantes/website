@@ -4,8 +4,11 @@
 import React from 'react'
 import {jsx, css} from '@emotion/core'
 import { formatDate } from '../services/utility'
+import Button from './Button'
+import { axiosDeleteSkill } from '../services/axios'
 
 const card = css`
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: #383855;
@@ -32,8 +35,20 @@ const picCtr = css`
     max-height: 150px;
     border-radius: 0px 0px 10px 10px;
 `
+const editBtns = css`
+    position: absolute;
+    display: float;
+    bottom: 5px;
+    right: -5px;
+`
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, isOwner, signedIn, data, setData }) {
+    const del = async() => {
+        await axiosDeleteSkill(project.id, {token: signedIn, account_id: project.account_id})
+            .catch(console.error)
+        setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(educ => educ.id != project.id)})))
+    }
+    
     return(
         <div css={card}>
             <div css={txtCtr}>
@@ -42,6 +57,7 @@ export default function ProjectCard({ project }) {
                 <span css={css`font-size: 12px;`}>{project.summary}</span>
             </div>
             <img css={picCtr} src={project.imgLink} alt="Project Image" width='200'/>
+            {isOwner && <div css={editBtns}><Button text="Edit"/><Button text="Delete" onClick={del}/></div>}
         </div>
     )
 }
