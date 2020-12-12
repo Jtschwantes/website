@@ -26,20 +26,6 @@ const addInfo = css`
 const promptCtr = css`
     width: 20%;
 `
-const link = css`
-    text-decoration: none;
-    text-align: center;
-    font-size: 24px;
-    color: #e0e0ff;
-    padding: 29px 15px;
-    margin: 0px;
-    text-transform: uppercase;
-    transition: background-color 0.4s, color 0.4s;
-    &:hover {
-        background-color: #dd3333;
-        color: #101020
-    } 
-`
 
 export default function Profile({ signedIn }) {
     const url = window.location.href
