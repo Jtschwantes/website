@@ -37,7 +37,7 @@ export default function App() {
         data: {
             token: signedIn
         }
-    }).then(data => {console.log(data); setId(data.account_id)}).catch(console.error)
+    }).then(data => {console.log(data); setId(data.data.account_id)}).catch(console.error)
 
     return (
       <Router>
