@@ -17,7 +17,7 @@ const floatRight = css`
 `
 const addJob = css`
     display: float;
-    height: 230px;
+    height: 200px;
     background-color: #303050;
     border-radius: 15px;
     padding: 15px;

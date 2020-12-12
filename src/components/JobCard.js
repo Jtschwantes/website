@@ -8,12 +8,13 @@ import Button from './Button'
 import { axiosDeleteJob } from '../services/axios'
 
 const card = css`
+    position: relative
     background-color: #383855;
     border-radius: 10px;
     margin: 5px;
     padding: 0px 10px;
     width: auto;
-    height: 130px;
+    height: 150px;
 `
 const editBtns = css`
     position: absolute;
