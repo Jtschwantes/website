@@ -42,10 +42,10 @@ export default function App() {
     }).then(data => {
         if(data.data.account_id) setId(data.data.account_id)
         else axiosPostAccount({
-            token = signedIn,
-            first = info.profileObj.givenName,
-            last = info.profileObj.familyName,
-            gid = info.profileObj.googleId
+            token: signedIn,
+            first: info.profileObj.givenName,
+            last: info.profileObj.familyName,
+            gid: info.profileObj.googleId
         })
     }).catch(console.error)
 
