@@ -55,11 +55,12 @@ export default function Profile({ signedIn }) {
 
     const [editing, setEditing] = useState(false)
     useEffect(() => {
-        setFirst(data?.first)
-        setLast(data?.last)
-        setPhone(data?.phone)
-        setEmail(data?.email)
-        setImgLink(data?.imglink)
+        if(!data) return
+        setFirst(data.first)
+        setLast(data.last)
+        setPhone(data.phone)
+        setEmail(data.email)
+        setImgLink(data.imglink)
     }, [data])
 
     const [first, setFirst] = useState('')
