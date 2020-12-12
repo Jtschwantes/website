@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import Page from './pages/Page'
 import useAxios from 'axios-hooks'
 import axios from 'axios'
+import axiosPostAccount from './services/axios'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 
@@ -29,6 +30,7 @@ const separator = css`
 export default function App() {
     const [{data, loading, error}] = useAxios('https://still-journey-39405.herokuapp.com/projects');
     const [signedIn, setSignedIn] = useState(false);
+    const [info, setInfo] = useState(false)
     const [id, setId] = useState(false)
 
     axios({
@@ -37,14 +39,20 @@ export default function App() {
         data: {
             token: signedIn
         }
-    }).then(data => setId(data.data.account_id)).catch(console.error)
+    }).then(data => {
+        if(data.data.account_id) setId(data.data.account_id)
+        console.log(info)
+        // else axiosPostAccount({
+        //     token = signedIn,
+        // })
+    }).catch(console.error)
 
     return (
       <Router>
         {loading && <Loading />}
         {data && (
         <>
-          <Header signedIn={signedIn} setSignedIn={setSignedIn} id={id}/>
+          <Header signedIn={signedIn} setSignedIn={setSignedIn} setInfo={setInfo} id={id}/>
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>
