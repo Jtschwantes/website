@@ -66,3 +66,24 @@ export const axiosDeleteSkill = async(id, data) => {
         data: data
     })
 }
+export const axiosPostProject = async(data) => {
+    axios({
+        method: 'POST',
+        url: `${path}/projects`,
+        data: data
+    })
+}
+export const axiosPutProject = async(id, data) => {
+    axios({
+        method: 'PUT',
+        url: `${path}/projects/${id}`,
+        data: data
+    })
+}
+export const axiosDeleteProject = async(id, data) => {
+    axios({
+        method: 'DELETE',
+        url: `${path}/projects/${id}`,
+        data: data
+    })
+}
