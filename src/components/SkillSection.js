@@ -33,6 +33,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
     const [description, setDesc] = useState('')
 
     const onEdit = (sid) => {
+        console.log(sid)
         setUpdating(sid)
         setEditing(true)
     }
@@ -73,7 +74,6 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                     <div css={floatRight} >
                         {editing && <Button text='Cancel' onClick={()=>{setEditing(false); setUpdating(false)}}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
-                        {console.log(editing)}
                     </div>
                 }
             </div>

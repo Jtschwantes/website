@@ -73,7 +73,6 @@ export default function Page({ signedIn }) {
         setData={setData}
         data={data}
       />}
-      {data && console.log(data)}
       {data?.educations && <EducationSection 
         id={id} 
         signedIn={signedIn} 

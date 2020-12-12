@@ -37,14 +37,11 @@ const google = css`
 `
 
 export default function Header({signedIn, setSignedIn}) {
-    const signIn = (res) => {
-        setSignedIn(res.tokenId)
-        console.log(res)
-    }
+    const signIn = (res) => { setSignedIn(res.tokenId) }
     const signOut = () => {
         setSignedIn(false)
     }
-    const signInFail = (res) => { console.log(res) }
+    const signInFail = (res) => { console.error(res) }
     const signOutFail = () => {  }
 
     return (

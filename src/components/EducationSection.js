@@ -62,7 +62,6 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
                     <div css={floatRight} >
                         {editing && <Button text='Cancel' onClick={()=>setEditing(false)}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
-                        {console.log(editing)}
                     </div>
                 }
             </div>
