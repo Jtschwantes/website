@@ -49,7 +49,7 @@ export default function App() {
           <div css={pageContainer}>
             <Switch>
               <Route path="/about"><About /></Route>
-              <Route path="/profiles/:id"><Profile/></Route>
+              <Route path="/profiles/:id"><Profile signedIn={signedIn}/></Route>
               <Route path="/projects/:id"><Project/></Route>
               <Route path="/accounts/:id"><Page signedIn={signedIn}/></Route>
               <Route path="/"><Home /></Route>

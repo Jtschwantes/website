@@ -7,6 +7,7 @@ import Loading from './Loading'
 import Button from '../components/Button'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../services/utility'
+import { axiosPostAccount, axiosPutAccount } from '../services/axios'
 
 const link = css`
     text-decoration: none;
@@ -17,7 +18,7 @@ const link = css`
 `
 const addInfo = css`
     display: float;
-    height: 230px;
+    height: 200px;
     background-color: #303050;
     border-radius: 15px;
     padding: 15px;
@@ -26,9 +27,30 @@ const promptCtr = css`
     width: 20%;
 `
 
-export default function Profile() {
+export default function Profile({ signedIn }) {
     const url = window.location.href
     const id = url.split('/')[url.split('/').length - 1]
+
+    const onClick = async() => {
+        if(!editing) setEditing(true)
+        else {
+            let putData = {
+                first,
+                last,
+                phone,
+                email,
+                imgLink,
+                token: signedIn,
+                account_id: id
+            } 
+            axiosPutAccount(id, putData).catch(console.error)
+            setFirst(putData.first)
+            setLast(putData.last)
+            setPhone(putData.phone)
+            setEmail(putData.email)
+            setImgLink(putData.imglink)
+        }
+    }
 
     const [editing, setEditing] = useState(false)
     useEffect(() => {
@@ -56,7 +78,6 @@ export default function Profile() {
                     <h2>Name: {data.first?data.first:''} {data.last?data.last:''}</h2>
                     <p>Phone number: {data.phone?data.phone:''}</p>
                     <p>Email address: {data.email?data.email:''}</p>
-                    <Button text={editing?"Save":"Edit"} onClick={() => {setEditing(true)}}/>
                 </>
             )}
             {data && editing && (
@@ -80,6 +101,7 @@ export default function Profile() {
                 </div>
                 </> 
             )} 
+            <Button text={editing?"Save":"Edit"} onClick={onClick}/>
         </>
     )
 }

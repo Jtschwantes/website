@@ -87,3 +87,17 @@ export const axiosDeleteProject = async(id, data) => {
         data: data
     })
 }
+export const axiosPostAccount = async(data) => {
+    axios({
+        method: 'POST',
+        url: `${path}/accounts`,
+        data: data
+    })
+}
+export const axiosPutAccount = async(id, data) => {
+    axios({
+        method: 'PUT',
+        url: `${path}/accounts/${id}`,
+        data: data
+    })
+}
