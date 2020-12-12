@@ -5,7 +5,7 @@ import {jsx, css} from '@emotion/core'
 import EducationCard from './EducationCard'
 import Button from './Button'
 import '../stylesheets/ctr.css'
-import { axiosPostEducation } from '../services/axios'
+import { axiosPostEducation, axiosPutEducation } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -36,8 +36,39 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
     const [end, setEnd] = useState('')
     const [description, setDesc] = useState('')
 
-    const onClick = async(e) => {
+    const [updating, setUpdating] = useState(false)
+    const onEdit = (edu) => {
+        setUpdating(edu)
+        setEditing(true)
+
+        setType(edu.type)
+        setField(edu.field)
+        setDesc(edu.description)
+        setSchool(edu.school)
+        setStart(edu.startDate)
+        setEnd(edu.endDate)
+    }
+
+    const onClick = async() => {
         if(!editing) setEditing(true)
+        else if(updating) {
+            setDesc('')
+            let putInfo = {
+                school,
+                field,
+                type,
+                startDate: start,
+                endDate: end,
+                description,
+                account_id: id,
+                token: signedIn,
+                id: updating.id
+            }
+            setEditing(false)
+            setUpdating(false)
+            await axiosPutEducation(updating.id, putInfo).catch(console.error)
+            setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(edu => edu.id != updating.id).concat(putInfo)})))
+        }
         else {
             let postInfo = {
                 school,
@@ -79,16 +110,24 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
                             <li>Description</li>
                         </ul>
                     </div>
-                    <input onChange={e => setSchool(e.target.value)}/>
-                    <input onChange={e => setField(e.target.value)}/>
-                    <input onChange={e => setType(e.target.value)}/>
-                    <input onChange={e => setStart(e.target.value)}/>
-                    <input onChange={e => setEnd(e.target.value)}/>
-                    <input onChange={e => setDesc(e.target.value)}/>
+                    <input value={school} onChange={e => setSchool(e.target.value)}/>
+                    <input value={field} onChange={e => setField(e.target.value)}/>
+                    <input value={type} onChange={e => setType(e.target.value)}/>
+                    <input value={start} onChange={e => setStart(e.target.value)}/>
+                    <input value={end} onChange={e => setEnd(e.target.value)}/>
+                    <input value={description} onChange={e => setDesc(e.target.value)}/>
                 </div>
                 </>
             )}
-            {educations.map(educ => <EducationCard education={educ} isOwner={isOwner} signedIn={signedIn} data={data} setData={setData}/>)}
+            {educations.map(educ => 
+                <EducationCard 
+                    education={educ} 
+                    isOwner={isOwner} 
+                    signedIn={signedIn} 
+                    data={data} 
+                    setData={setData}
+                    onEdit={onEdit}
+                />)}
         </>
     )
 }
