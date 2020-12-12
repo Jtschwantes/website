@@ -68,7 +68,7 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
             setEditing(false)
             setUpdating(false)
             await axiosPutEducation(updating.id, putInfo).catch(console.error)
-            setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(edu => edu.id != updating.id).concat(putInfo)})))
+            setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.filter(edu => edu.id != updating.id).concat(putInfo)})))
         }
         else {
             let postInfo = {
