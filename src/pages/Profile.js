@@ -101,6 +101,7 @@ export default function Profile({ signedIn }) {
                 </div>
                 </> 
             )} 
+            {editing && <Button text="Cancel" onClick={() => setEditing(false)}/>}
             <Button text={editing?"Save":"Edit"} onClick={onClick}/>
         </>
     )
