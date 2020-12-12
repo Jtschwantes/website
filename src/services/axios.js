@@ -24,3 +24,24 @@ export const axiosDeleteEducation = async(id, data) => {
         data: data
     })
 }
+export const axiosPostEducation = async(data) => {
+    axios({
+        method: 'POST',
+        url: `${path}/jobs`,
+        data: data
+    })
+}
+export const axiosPutEducation = async(id, data) => {
+    axios({
+        method: 'PUT',
+        url: `${path}/jobs/${id}`,
+        data: data
+    })
+}
+export const axiosDeleteEducation = async(id, data) => {
+    axios({
+        method: 'DELETE',
+        url: `${path}/jobs/${id}`,
+        data: data
+    })
+}
