@@ -7,10 +7,13 @@ import About from './pages/About'
 import './App.css'
 import Loading from './pages/Loading'
 import Projects from './pages/Projects'
+import Project from './pages/Project'
+import Profile from './pages/Profile'
 import Home from './pages/Home'
 import Page from './pages/Page'
 import useAxios from 'axios-hooks'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
 
 const pageContainer = css`
     max-width: 750px;
@@ -25,19 +28,27 @@ const separator = css`
 export default function App() {
     const [{data, loading, error}] = useAxios('https://still-journey-39405.herokuapp.com/projects');
     const [signedIn, setSignedIn] = useState(false);
+    const [id, setId] = useState(false)
+
+    axios({
+        url: 'https://still-journey-39405.herokuapp.com/who',
+        method: 'POST',
+        data: signedIn
+    }).then(data => {console.log(data); setId(data.owner)}).catch(console.error)
 
     return (
       <Router>
         {loading && <Loading />}
         {data && (
         <>
-          <Header signedIn={signedIn} setSignedIn={setSignedIn}/>
+          <Header signedIn={signedIn} setSignedIn={setSignedIn} id={id}/>
           <div css={separator}></div>
           <div css={pageContainer}>
             <Switch>
               <Route path="/about"><About /></Route>
-              <Route path="/projects"><Projects projects={data}/></Route>
-              <Route path="/:id"><Page signedIn={signedIn}/></Route>
+              <Route path="/profiles/:id"><Profile/></Route>
+              <Route path="/projects/:id"><Project/></Route>
+              <Route path="/accounts/:id"><Page signedIn={signedIn}/></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

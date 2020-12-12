@@ -36,7 +36,7 @@ const google = css`
     margin-left: auto;
 `
 
-export default function Header({signedIn, setSignedIn}) {
+export default function Header({signedIn, setSignedIn, id}) {
     const signIn = (res) => { setSignedIn(res.tokenId) }
     const signOut = () => {
         setSignedIn(false)
@@ -48,8 +48,10 @@ export default function Header({signedIn, setSignedIn}) {
         <div css={fullDiv}>
             <ul css={ul}>
                 <li><Link css={link} to='/'>Home</Link></li>
-                <li><Link css={link} to='/projects'>Projects</Link></li>
                 <li><Link css={link} to='/about'>About</Link></li>
+                {signedIn && id && (
+                    <li><Link css={link} to={`/profiles/${id}`}>Profile</Link></li>
+                )}
             </ul>
             <div css={google}>
                 {!signedIn && <GoogleLogin 

@@ -35,15 +35,15 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
     const [description, setDesc] = useState('')
 
     const [updating, setUpdating] = useState(false)
-    const onEdit = (skl) => {
-        setUpdating(skl)
+    const onEdit = (proj) => {
+        setUpdating(proj)
         setEditing(true)
-        setDesc(skl.description)
-        setName(skl.name)
-        setSummary(skl.summary)
-        setDate(skl.date)
-        setLink(skl.link)
-        setImgLink(skl.imglink)
+        setDesc(proj.description)
+        setName(proj.name)
+        setSummary(proj.summary)
+        setDate(proj.date)
+        setLink(proj.link)
+        setImgLink(proj.imgLink)
     }
 
     const onClick = async() => {
@@ -54,7 +54,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                 summary,
                 date,
                 link,
-                imglink: imgLink,
+                imgLink,
                 description,
                 account_id: id,
                 token: signedIn,
@@ -71,7 +71,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                 summary,
                 date,
                 link,
-                imglink: imgLink,
+                imgLink,
                 description,
                 account_id: id,
                 token: signedIn
