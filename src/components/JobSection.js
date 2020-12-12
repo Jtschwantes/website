@@ -58,6 +58,7 @@ export default function JobSection({ jobs, isOwner, signedIn, id, data, setData 
                 <h2>Employment History</h2>
                 {isOwner &&  
                     <div css={floatRight} >
+                        {editing && <Button text='Cancel' onClick={()=>setEditing(false)}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                         {console.log(editing)}
                     </div>

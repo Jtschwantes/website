@@ -59,6 +59,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                 <h2>Projects</h2>
                 {isOwner &&  
                     <div css={floatRight} >
+                        {editing && <Button text='Cancel' onClick={()=>setEditing(false)}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                         {console.log(editing)}
                     </div>

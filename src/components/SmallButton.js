@@ -22,8 +22,8 @@ const btn = css`
 `
 
 export default function Button({ onClick, text, edit, del, add }) {
-    if(edit) return (<div css={btn} onClick={onClick}><img src='../images/editws.png' alt='edit' width='25' height='25'/></div>)
+    /*if(edit) return (<div css={btn} onClick={onClick}><img src='../images/editws.png' alt='edit' width='25' height='25'/></div>)
     if(del) return (<div css={btn} onClick={onClick}><img src='../images/trashws.png' alt='delete' width='25' height='25'/></div>)
     if(add) return (<div css={btn} onClick={onClick}><img src='../images/plusws.png' alt='add' width='25' height='25'/></div>)
-    return(<div css={btn} onClick={onClick}>{text}</div>)
+    */ return(<div css={btn} onClick={onClick}>{text}</div>)
 }
