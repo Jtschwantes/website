@@ -56,7 +56,7 @@ export default function Profile() {
                     <h2>{data.first} {data.last}</h2>
                     <p>Phone number: {data.phone}</p>
                     <p>Email address: {data.email}</p>
-                    <Button edit text="Edit" onClick={() => {setEditing(false)}}/>
+                    <Button edit text="Edit" onClick={() => {setEditing(true)}}/>
                 </>
             )}
             {data && editing && (
