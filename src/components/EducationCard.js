@@ -47,7 +47,7 @@ export default function EducationCard({ education, isOwner, signedIn, data, setD
                 </div>
                 <em>{education?.type} - {education?.field}</em><br />
                 <p>{education?.description}</p>
-                {isOwner && <div css={editBtns}><Button text="Edit"/><Button text="Delete" onClick={del}/></div>}
+                {isOwner && <div css={editBtns}><Button edit text="Edit"/><Button text="Delete" del onClick={del}/></div>}
         </div>
     )
 }

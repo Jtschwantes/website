@@ -51,7 +51,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                 <h2>Skills</h2>
                 {isOwner &&  
                     <div css={floatRight} >
-                        <Button text={editing?"Save":"Add"} onClick={onClick}/>
+                        <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                         {console.log(editing)}
                     </div>
                 }

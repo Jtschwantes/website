@@ -59,7 +59,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                 <h2>Projects</h2>
                 {isOwner &&  
                     <div css={floatRight} >
-                        <Button text={editing?"Save":"Add"} onClick={onClick}/>
+                        <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                         {console.log(editing)}
                     </div>
                 }
