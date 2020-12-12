@@ -46,7 +46,7 @@ export default function ProjectCard({ project, isOwner, signedIn, data, setData 
     const del = async() => {
         await axiosDeleteProject(project.id, {token: signedIn, account_id: project.account_id})
             .catch(console.error)
-        setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(educ => educ.id != project.id)})))
+        setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(proj => proj.id != project.id)})))
     }
     
     return(

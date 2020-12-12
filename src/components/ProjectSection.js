@@ -49,7 +49,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
             }
             setEditing(false)
             await axiosPostProject(postInfo).catch(console.error)
-            setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.concat(postInfo)})))
+            setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.concat(postInfo)})))
         }
     }
     

@@ -27,7 +27,7 @@ export default function SkillCard({ skill, isOwner, signedIn, data, setData }) {
     const del = async() => {
         await axiosDeleteSkill(skill.id, {token: signedIn, account_id: skill.account_id})
             .catch(console.error)
-        setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.filter(skill => skill.id != skill.id)})))
+        setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.filter(skl => skl.id != skill.id)})))
     }
     
     return(

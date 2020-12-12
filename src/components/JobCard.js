@@ -27,7 +27,7 @@ export default function JobCard({ job, isOwner, signedIn, data, setData }) {
     const del = async() => {
         await axiosDeleteJob(job.id, {token: signedIn, account_id: job.account_id})
             .catch(console.error)
-        setData(JSON.parse(JSON.stringify({ ...data, jobs: data.jobs.filter(job => job.id != job.id)})))
+        setData(JSON.parse(JSON.stringify({ ...data, jobs: data.jobs.filter(j => j.id != job.id)})))
     }
     
     return(
