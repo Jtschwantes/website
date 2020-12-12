@@ -2,6 +2,7 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import {jsx, css} from '@emotion/core'
 import { formatDate } from '../services/utility'
 import Button from './Button'
@@ -43,6 +44,7 @@ const editBtns = css`
 `
 
 export default function ProjectCard({ project, isOwner, signedIn, data, setData, onEdit }) {
+    history = useHistory()
     const del = async() => {
         await axiosDeleteProject(project.id, {token: signedIn, account_id: project.account_id})
             .catch(console.error)
@@ -51,7 +53,7 @@ export default function ProjectCard({ project, isOwner, signedIn, data, setData,
     
     return(
         <div css={card}>
-            <div css={txtCtr}>
+            <div css={txtCtr} onClick={() => history.push(`/projects/${projects.id}`)}>
                 <strong>{project.name}</strong><br/>
                 {formatDate(project.date)}<br/>
                 <span css={css`font-size: 12px;`}>{project.summary}</span>

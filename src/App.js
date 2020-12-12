@@ -41,7 +41,10 @@ export default function App() {
             token: signedIn
         }
     }).then(data => {
-        if(data.data.account_id) setId(data.data.account_id)
+        if(data.data.account_id) {
+            setId(data.data.account_id)
+            console.log(data.data.account_id)
+        }
         else axiosPostAccount({
             token: signedIn,
             first: info.profileObj.givenName,
