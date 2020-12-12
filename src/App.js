@@ -34,7 +34,9 @@ export default function App() {
     axios({
         url: 'https://still-journey-39405.herokuapp.com/who',
         method: 'POST',
-        data: signedIn
+        data: {
+            token: signedIn
+        }
     }).then(data => {console.log(data); setId(data.owner)}).catch(console.error)
 
     return (
