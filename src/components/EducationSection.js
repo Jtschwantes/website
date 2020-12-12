@@ -5,7 +5,6 @@ import {jsx, css} from '@emotion/core'
 import EducationCard from './EducationCard'
 import Button from './Button'
 import '../stylesheets/ctr.css'
-import axios from 'axios'
 import { axiosPostEducation } from '../services/axios'
 
 const cardContainer = css`

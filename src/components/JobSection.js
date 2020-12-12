@@ -1,9 +1,11 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from 'react'
+import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import JobCard from './JobCard'
 import Button from './Button'
+import '../stylesheets/ctr.css'
+import { axiosPostJob } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -13,8 +15,18 @@ const floatRight = css`
     margin-left: auto;
     margin-top: 0px;
 `
+const addJob = css`
+    display: float;
+    height: 230px;
+    background-color: #303050;
+    border-radius: 15px;
+    padding: 15px;
+`
+const promptCtr = css`
+    width: 20%;
+`
 
-export default function JobSection({ jobs, isOwner }) {
+export default function JobSection({ jobs, isOwner, signedIn, id, data, setData }) {
     const [editing, setEditing] = useState(false)
 
     const [title, setTitle] = useState('')
@@ -36,8 +48,8 @@ export default function JobSection({ jobs, isOwner }) {
                 token: signedIn
             }
             setEditing(false)
-            await axiosPostEducation('POST', postInfo).catch(console.error)
-            setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.concat(postInfo)})))
+            await axiosPostJob('POST', postInfo).catch(console.error)
+            setData(JSON.parse(JSON.stringify({ ...data, jobs: data.jobs.concat(postInfo)})))
         }
     }
     return(
@@ -54,7 +66,7 @@ export default function JobSection({ jobs, isOwner }) {
             {editing && (
                 <>
                 <strong>Please input the following information:</strong>
-                <div css={addEducation}>
+                <div css={addJob}>
                     <div css={promptCtr}>
                         <ul>
                             <li>Job Title</li>
