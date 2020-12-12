@@ -32,24 +32,24 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
 
     const [description, setDesc] = useState('')
 
-    const onEdit = () => {
-        setUpdating(true)
+    const onEdit = (sid) => {
+        setUpdating(sid)
         setEditing(true)
     }
 
-    const onClick = async(sid = null) => {
+    const onClick = async() => {
         if(!editing) setEditing(true)
         else if(updating) {
             setDesc('')
             let putInfo = {
                 description,
                 account_id: id,
-                id: sid,
+                id: updating,
                 token: signedIn
             }
             setEditing(false)
             setUpdating(false)
-            await axiosPutSkill(sid, putInfo).catch(console.error)
+            await axiosPutSkill(updating, putInfo).catch(console.error)
             setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.concat(putInfo)})))
         }
         else {
