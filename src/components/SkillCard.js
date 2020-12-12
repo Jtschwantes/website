@@ -3,7 +3,7 @@
 /** @jsx jsx */
 import React from 'react'
 import {jsx, css} from '@emotion/core'
-import Button from './Button'
+import SmallButton from './SmallButton'
 import { axiosDeleteSkill } from '../services/axios'
 
 const card = css`
@@ -33,7 +33,7 @@ export default function SkillCard({ skill, isOwner, signedIn, data, setData }) {
     return(
         <div css={card}>
             <span css={css`font-size: 12px; font-weight: bold;`}>{skill.description}</span>
-            {isOwner && <div css={editBtns}><Button text="Edit"/><Button text="Delete" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><SmallButton text="E"/><SmallButton text="D" onClick={del}/></div>}
         </div>
     )
 }
