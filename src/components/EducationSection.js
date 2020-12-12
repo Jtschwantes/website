@@ -38,7 +38,6 @@ export default function EducationSection({ educations, isOwner, signedIn, id, da
 
     const [updating, setUpdating] = useState(false)
     const onEdit = (edu) => {
-        console.log(edu)
         setUpdating(edu)
         setEditing(true)
 

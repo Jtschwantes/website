@@ -43,7 +43,7 @@ export default function JobCard({ job, isOwner, signedIn, data, setData, onEdit 
                 <em>{job.employer}</em><br />
                 {job.description}
             </p>
-            {isOwner && <div css={editBtns}><Button edit onClick={() => onEdit(job)} text="Edit"/><Button del text="Delete" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><Button edit onClick={(e) => onEdit(job)} text="Edit"/><Button del text="Delete" onClick={del}/></div>}
         </div>
     )
 }
