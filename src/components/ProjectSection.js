@@ -34,8 +34,38 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
     const [imgLink, setImgLink] = useState('')
     const [description, setDesc] = useState('')
 
-    const onClick = async(e) => {
+    const [updating, setUpdating] = useState(false)
+    const onEdit = (skl) => {
+        setUpdating(skl)
+        setEditing(true)
+        setDesc(skl.description)
+        setName(skl.name)
+        setSummary(skl.summary)
+        setDate(skl.date)
+        setLink(skl.link)
+        setImgLink(skl.imglink)
+    }
+
+    const onClick = async() => {
         if(!editing) setEditing(true)
+        else if(updating) {
+            setDesc('')
+            let putInfo = {
+                name,
+                summary,
+                date,
+                link,
+                imglink: imgLink,
+                description,
+                account_id: id,
+                token: signedIn,
+                id: updating.id
+            }
+            setEditing(false)
+            setUpdating(false)
+            await axiosPutSkill(updating.id, putInfo).catch(console.error)
+            setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(p => p.id != updating.id).concat(putInfo)})))
+        }
         else {
             let postInfo = {
                 name,
@@ -78,17 +108,25 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                             <li>Image Link</li>
                         </ul>
                     </div>
-                    <input onChange={e => setName(e.target.value)}/>
-                    <input onChange={e => setSummary(e.target.value)}/>
-                    <input onChange={e => setDate(e.target.value)}/>
-                    <input onChange={e => setDesc(e.target.value)}/>
-                    <input onChange={e => setLink(e.target.value)}/>
-                    <input onChange={e => setImgLink(e.target.value)}/>
+                    <input value={name} onChange={e => setName(e.target.value)}/>
+                    <input value={summary} onChange={e => setSummary(e.target.value)}/>
+                    <input value={date} onChange={e => setDate(e.target.value)}/>
+                    <input value={description} onChange={e => setDesc(e.target.value)}/>
+                    <input value={link} onChange={e => setLink(e.target.value)}/>
+                    <input value={imgLink} onChange={e => setImgLink(e.target.value)}/>
                 </div>
                 </>
             )}
             <div css={cardContainer}>
-                {projects.map(proj => <ProjectCard project={proj} isOwner={isOwner} signedIn={signedIn} data={data} setData={setData}/>)}
+                {projects.map(proj => 
+                    <ProjectCard 
+                        project={proj} 
+                        isOwner={isOwner} 
+                        signedIn={signedIn} 
+                        data={data} 
+                        setData={setData}
+                        onEdit={onEdit}
+                    />)}
             </div>
         </>
     )

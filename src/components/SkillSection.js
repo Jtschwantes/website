@@ -50,7 +50,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
             }
             setEditing(false)
             setUpdating(false)
-            await axiosPutSkill(updating, putInfo).catch(console.error)
+            await axiosPutSkill(updating.id, putInfo).catch(console.error)
             setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.filter(s => s.id != updating.id).concat(putInfo)})))
         }
         else {

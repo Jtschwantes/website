@@ -42,7 +42,7 @@ const editBtns = css`
     right: -5px;
 `
 
-export default function ProjectCard({ project, isOwner, signedIn, data, setData }) {
+export default function ProjectCard({ project, isOwner, signedIn, data, setData, onEdit }) {
     const del = async() => {
         await axiosDeleteProject(project.id, {token: signedIn, account_id: project.account_id})
             .catch(console.error)
@@ -57,7 +57,7 @@ export default function ProjectCard({ project, isOwner, signedIn, data, setData 
                 <span css={css`font-size: 12px;`}>{project.summary}</span>
             </div>
             <img css={picCtr} src={project.imgLink} alt="Project Image" width='200'/>
-            {isOwner && <div css={editBtns}><Button edit text="Edit"/><Button del text="Delete" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><Button edit text="Edit" onEdit={onEdit}/><Button del text="Delete" onClick={del}/></div>}
         </div>
     )
 }
