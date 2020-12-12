@@ -53,10 +53,10 @@ export default function Profile() {
             {data && !editing && (
                 <>
                     <h1>Profile</h1>
-                    <h2>{data.first} {data.last}</h2>
-                    <p>Phone number: {data.phone}</p>
-                    <p>Email address: {data.email}</p>
-                    <Button edit text="Edit" onClick={() => {setEditing(true)}}/>
+                    <h2>Name: {data.first?data.first:''} {data.last?data.last:''}</h2>
+                    <p>Phone number: {data.phone?data.phone:''}</p>
+                    <p>Email address: {data.email?data.email:''}</p>
+                    <Button text={editing?"Save":"Edit"} onClick={() => {setEditing(true)}}/>
                 </>
             )}
             {data && editing && (
