@@ -5,7 +5,7 @@ import {jsx, css} from '@emotion/core'
 import SkillCard from './SkillCard'
 import Button from './Button'
 import '../stylesheets/ctr.css'
-import { axiosPostSkill } from '../services/axios'
+import { axiosPostSkill, axiosPutSkill } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -28,11 +28,29 @@ const promptCtr = css`
 
 export default function SkillSection({ skills, isOwner, signedIn, id, data, setData }) {
     const [editing, setEditing] = useState(false)
+    const [updating, setUpdating] = useState(false)
 
     const [description, setDesc] = useState('')
 
-    const onClick = async(e) => {
+    const onEdit = () => {
+        setUpdating(true)
+    }
+
+    const onClick = async(sid = null) => {
         if(!editing) setEditing(true)
+        else if(updating) {
+            setDesc('')
+            let putInfo = {
+                description,
+                account_id: id,
+                id: sid,
+                token: signedIn
+            }
+            setEditing(false)
+            setUpdating(false)
+            await axiosPutSkill(sid, putInfo).catch(console.error)
+            setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.concat(putInfo)})))
+        }
         else {
             setDesc('')
             let postInfo = {
@@ -52,7 +70,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                 <h2>Skills</h2>
                 {isOwner &&  
                     <div css={floatRight} >
-                        {editing && <Button text='Cancel' onClick={()=>setEditing(false)}/>}
+                        {editing && <Button text='Cancel' onClick={()=>{setEditing(false); setUpdating(false)}}/>}
                         <Button add text={editing?"Save":"Add"} onClick={onClick}/>
                         {console.log(editing)}
                     </div>
@@ -72,7 +90,15 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                 </>
             )}
             <div css={cardContainer}>
-            {skills.map(skill => <SkillCard skill={skill}isOwner={isOwner} signedIn={signedIn} data={data} setData={setData}/>)} 
+            {skills.map(skill => 
+                <SkillCard 
+                    skill={skill}
+                    isOwner={isOwner} 
+                    signedIn={signedIn} 
+                    data={data} 
+                    setData={setData} 
+                    onEdit={onEdit}
+                />)} 
             </div>
         </>
     )

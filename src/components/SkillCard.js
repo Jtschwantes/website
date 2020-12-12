@@ -23,7 +23,7 @@ const editBtns = css`
     right: -5px;
 `
 
-export default function SkillCard({ skill, isOwner, signedIn, data, setData }) {
+export default function SkillCard({ skill, isOwner, signedIn, data, setData, onEdit }) {
     const del = async() => {
         await axiosDeleteSkill(skill.id, {token: signedIn, account_id: skill.account_id})
             .catch(console.error)
@@ -33,7 +33,7 @@ export default function SkillCard({ skill, isOwner, signedIn, data, setData }) {
     return(
         <div css={card}>
             <span css={css`font-size: 12px; font-weight: bold;`}>{skill.description}</span>
-            {isOwner && <div css={editBtns}><SmallButton edit text="E"/><SmallButton del text="D" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><SmallButton edit text="E" onClick={(e) => onEdit(skill.id)}/><SmallButton del text="D" onClick={del}/></div>}
         </div>
     )
 }
