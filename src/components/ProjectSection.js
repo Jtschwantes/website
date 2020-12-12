@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import ProjectCard from './ProjectCard'
 import Button from './Button'
-import { axiosPostProject } from '../services/axios'
+import { axiosPostProject, axiosPutProject } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -63,7 +63,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
             }
             setEditing(false)
             setUpdating(false)
-            await axiosPutSkill(updating.id, putInfo).catch(console.error)
+            await axiosPutProject(updating.id, putInfo).catch(console.error)
             setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(p => p.id != updating.id).concat(putInfo)})))
         }
         else {
