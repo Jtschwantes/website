@@ -34,6 +34,7 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
 
     const onEdit = () => {
         setUpdating(true)
+        setEditing(true)
     }
 
     const onClick = async(sid = null) => {
