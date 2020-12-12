@@ -33,7 +33,7 @@ export default function SkillCard({ skill, isOwner, signedIn, data, setData, onE
     return(
         <div css={card}>
             <span css={css`font-size: 12px; font-weight: bold;`}>{skill.description}</span>
-            {isOwner && <div css={editBtns}><SmallButton edit text="E" onClick={(e) => onEdit(skill.id)}/><SmallButton del text="D" onClick={del}/></div>}
+            {isOwner && <div css={editBtns}><SmallButton edit text="E" onClick={(e) => onEdit(skill)}/><SmallButton del text="D" onClick={del}/></div>}
         </div>
     )
 }

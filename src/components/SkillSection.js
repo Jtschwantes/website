@@ -28,14 +28,14 @@ const promptCtr = css`
 
 export default function SkillSection({ skills, isOwner, signedIn, id, data, setData }) {
     const [editing, setEditing] = useState(false)
-    const [updating, setUpdating] = useState(false)
-
+    
     const [description, setDesc] = useState('')
-
-    const onEdit = (sid) => {
-        console.log(sid)
-        setUpdating(sid)
+    
+    const [updating, setUpdating] = useState(false)
+    const onEdit = (skl) => {
+        setUpdating(skl)
         setEditing(true)
+        setDesc(skl.description)
     }
 
     const onClick = async() => {
@@ -45,13 +45,13 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
             let putInfo = {
                 description,
                 account_id: id,
-                id: updating,
+                id: updating.id,
                 token: signedIn
             }
             setEditing(false)
             setUpdating(false)
             await axiosPutSkill(updating, putInfo).catch(console.error)
-            setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.concat(putInfo)})))
+            setData(JSON.parse(JSON.stringify({ ...data, skills: data.skills.filter(s => s.id != updating.id).concat(putInfo)})))
         }
         else {
             setDesc('')
