@@ -12,6 +12,7 @@ import Profile from './pages/Profile'
 import Home from './pages/Home'
 import Page from './pages/Page'
 import useAxios from 'axios-hooks'
+import axios from 'axios'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 
