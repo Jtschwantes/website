@@ -17,7 +17,7 @@ const floatRight = css`
 `
 const addSkill = css`
     display: float;
-    height: 230px;
+    height: 50px;
     background-color: #303050;
     border-radius: 15px;
     padding: 15px;
@@ -56,7 +56,6 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                     </div>
                 }
             </div>
-            <div css={cardContainer}>
             {editing && (
                 <>
                 <strong>Please input the following information:</strong>
@@ -70,7 +69,8 @@ export default function SkillSection({ skills, isOwner, signedIn, id, data, setD
                 </div>
                 </>
             )}
-            {skills.map(skill => <SkillCard skill={skill}/>)} 
+            <div css={cardContainer}>
+            {skills.map(skill => <SkillCard skill={skill}isOwner={isOwner} signedIn={signedIn} data={data} setData={setData}/>)} 
             </div>
         </>
     )
