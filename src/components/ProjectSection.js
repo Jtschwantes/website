@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import ProjectCard from './ProjectCard'
 import Button from './Button'
-import { axiosPostSkill } from '../services/axios'
+import { axiosPostProject } from '../services/axios'
 
 const cardContainer = css`
     display: flex;
@@ -14,7 +14,7 @@ const floatRight = css`
     margin-left: auto;
     margin-top: 0px;
 `
-const addSkill = css`
+const addProject = css`
     display: float;
     height: 230px;
     background-color: #303050;
@@ -48,7 +48,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
                 token: signedIn
             }
             setEditing(false)
-            await axiosPostSkill(postInfo).catch(console.error)
+            await axiosPostProject(postInfo).catch(console.error)
             setData(JSON.parse(JSON.stringify({ ...data, educations: data.educations.concat(postInfo)})))
         }
     }
@@ -67,7 +67,7 @@ export default function ProjectSection({ projects, isOwner, signedIn, id, data, 
             {editing && (
                 <>
                 <strong>Please input the following information:</strong>
-                <div css={addSkill}>
+                <div css={addProject}>
                     <div css={promptCtr}>
                         <ul>
                             <li>Project Name</li>

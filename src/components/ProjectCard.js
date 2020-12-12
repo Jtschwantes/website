@@ -5,7 +5,7 @@ import React from 'react'
 import {jsx, css} from '@emotion/core'
 import { formatDate } from '../services/utility'
 import Button from './Button'
-import { axiosDeleteSkill } from '../services/axios'
+import { axiosDeleteProject } from '../services/axios'
 
 const card = css`
     position: relative;
@@ -44,7 +44,7 @@ const editBtns = css`
 
 export default function ProjectCard({ project, isOwner, signedIn, data, setData }) {
     const del = async() => {
-        await axiosDeleteSkill(project.id, {token: signedIn, account_id: project.account_id})
+        await axiosDeleteProject(project.id, {token: signedIn, account_id: project.account_id})
             .catch(console.error)
         setData(JSON.parse(JSON.stringify({ ...data, projects: data.projects.filter(educ => educ.id != project.id)})))
     }
