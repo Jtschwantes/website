@@ -1,6 +1,6 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {jsx, css} from '@emotion/core'
 import Header from './components/Header'
 import About from './pages/About'
@@ -33,6 +33,7 @@ export default function App() {
     const [info, setInfo] = useState(false)
     const [id, setId] = useState(false)
 
+    useEffect(() => {
     axios({
         url: 'https://still-journey-39405.herokuapp.com/who',
         method: 'POST',
@@ -48,6 +49,8 @@ export default function App() {
             gid: info.profileObj.googleId
         })
     }).catch(console.error)
+    }, [signedIn])
+    
 
     return (
       <Router>
