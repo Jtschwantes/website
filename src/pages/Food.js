@@ -2,11 +2,11 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
-import breakfastImg from '../images/breakfast.jpg'
-import dessertImg from '../images/dessert.jpg'
-import snacksImg from '../images/snacks.jpg'
-import dinnerImg from '../images/dinner.jpg'
-import berriesImg from '../images/strawberries.jpg'
+// import breakfastImg from '../images/breakfast.jpg'
+// import dessertImg from '../images/dessert.jpg'
+// import snacksImg from '../images/snacks.jpg'
+// import dinnerImg from '../images/dinner.jpg'
+// import berriesImg from '../images/strawberries.jpg'
 import { Link } from 'react-router-dom'
 
 const link = css`
