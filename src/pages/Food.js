@@ -70,7 +70,7 @@ const gridItem2 = css`
 export default function Food() {
   return (
     <>
-      <h1>My Favorite Recipes</h1>
+      {/* <h1>My Favorite Recipes</h1>
       <div css={gridCtr}>
         <div css={gridItem2} style={{ backgroundImage: `url(${berriesImg})`, backgroundSize: `100% 100%` }}>
           Search
@@ -87,7 +87,7 @@ export default function Food() {
         <div css={gridItem} style={{ backgroundImage: `url(${dessertImg})`, backgroundSize: `100% 100%` }}>
           Dessert
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
