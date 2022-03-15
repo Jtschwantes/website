@@ -7,13 +7,12 @@ import { GoogleLogout } from 'react-google-login';
 
 const fullDiv = css`
     height: 66px;
-    background-color: #303050;
+    background-color: #282828;
     display: flex;
-    box-shadow:  3px 3px 5px 6px #112;
+    // box-shadow:  3px 3px 5px 6px #112;
 `
 const ul = css`
     display: flex;
-    list-style-type: none;
     padding-inline-start: 0px;
 `
 const link = css`
@@ -37,23 +36,26 @@ const google = css`
 `
 
 export default function Header({signedIn, setSignedIn, id, setInfo}) {
-    const signIn = (res) => { setSignedIn(res.tokenId); setInfo(res) }
-    const signOut = () => {
-        setSignedIn(false)
-    }
-    const signInFail = (res) => { console.error(res) }
-    const signOutFail = () => {  }
+    // Google signin stuff
+    // const signIn = (res) => { setSignedIn(res.tokenId); setInfo(res) }
+    // const signOut = () => {
+    //     setSignedIn(false)
+    // }
+    // const signInFail = (res) => { console.error(res) }
+    // const signOutFail = () => {  }
 
     return (
         <div css={fullDiv}>
             <ul css={ul}>
                 <li><Link css={link} to='/'>Home</Link></li>
                 <li><Link css={link} to='/about'>About</Link></li>
+                <li><Link css={link} to='/food'>Food</Link></li>
                 {signedIn && id && (
                     <li><Link css={link} to={`/profiles/${id}`}>Profile</Link></li>
                 )}
             </ul>
-            <div css={google}>
+            {/* Google Signin stuff */}
+            {/* <div css={google}>
                 {!signedIn && <GoogleLogin 
                     clientId="723588652665-thkoe5eonaumrjabu495nj4ca2fs2q7u.apps.googleusercontent.com"
                     // buttonText="Login"
@@ -68,7 +70,7 @@ export default function Header({signedIn, setSignedIn, id, setInfo}) {
                     onLogoutSuccess={signOut}
                     onFailure={signOutFail}
                 />}
-            </div>
+            </div> */}
         </div>
     )
 }

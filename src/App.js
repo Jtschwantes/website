@@ -7,10 +7,12 @@ import About from './pages/About'
 import './App.css'
 import Loading from './pages/Loading'
 import Projects from './pages/Projects'
+import InfiniteScroll from './components/InfiniteScroll'
 import Project from './pages/Project'
 import Profile from './pages/Profile'
 import Home from './pages/Home'
 import Page from './pages/Page'
+import Food from './pages/Food'
 import useAxios from 'axios-hooks'
 import axios from 'axios'
 import { axiosPostAccount } from './services/axios'
@@ -18,13 +20,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 
 const pageContainer = css`
-    max-width: 750px;
-    min-width: 750px;
-    margin: auto;
-    padding: 0px 60px;
+  max-width: 750px;
+  min-width: 750px;
+  margin: auto;
+  padding: 0px 60px;
 `
 const separator = css`
-    height: 30px;
+  height: 30px;
 `
 
 export default function App() {
@@ -68,6 +70,8 @@ export default function App() {
               <Route path="/profiles/:id"><Profile signedIn={signedIn}/></Route>
               <Route path="/projects/:id"><Project/></Route>
               <Route path="/accounts/:id"><Page signedIn={signedIn}/></Route>
+              <Route path="/food"><Food/></Route>
+              <Route path="/test"><InfiniteScroll/></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

@@ -4,7 +4,11 @@
 }
 
 body {
-  background-color: #202030;
+  background-color: #000000;
+}
+
+h1 {
+  text-align: center;
 }
 
 h2 {
